@@ -1,0 +1,34 @@
+# Wayro Backend .gitignore
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build
+dist/
+build/
+
+# Local order data
+data.json
+data.json.tmp
+/data/bookings.json
+/data/*.bak
