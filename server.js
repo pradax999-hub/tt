@@ -16,6 +16,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const configured = value => typeof value === 'string' && value.trim().length > 0 && !/placeholder|your[-_]|example\.com|change[-_]me/i.test(value);
 const PUBLIC_URL = new URL(process.env.CLIENT_URL || process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`);
+const RENDER_HOSTNAME = (process.env.RENDER_EXTERNAL_HOSTNAME || '').toLowerCase();
 const ADMIN_TOKEN = process.env.DRIVER_ADMIN_TOKEN || '';
 const PRIVATE_DATA_PATH = '/wry-ops-8f3c9a71d6e24b50';
 if (!['https:', 'http:'].includes(PUBLIC_URL.protocol) || (PUBLIC_URL.protocol !== 'https:' && !['localhost', '127.0.0.1'].includes(PUBLIC_URL.hostname))) {
@@ -88,10 +89,19 @@ if (configured(STRIPE_KEY)) {
   }
 }
 
-app.use(cors({ origin: PUBLIC_URL.origin, allowedHeaders: ['Content-Type', 'Authorization', 'Idempotency-Key'] }));
-app.use('/api', (req, res, next) => {
-  const origin = req.headers.origin;
+function isAllowedOrigin(origin, req) {
+  if (!origin || origin === PUBLIC_URL.origin) return true;
   let isLocalOrigin = false;
+  let isRenderOrigin = false;
+  if (origin && RENDER_HOSTNAME) {
+    try {
+      const parsed = new URL(origin);
+      const requestHost = String(req.get('host') || '').toLowerCase();
+      isRenderOrigin = parsed.protocol === 'https:' &&
+        parsed.host.toLowerCase() === RENDER_HOSTNAME &&
+        parsed.host.toLowerCase() === requestHost;
+    } catch {}
+  }
   if (origin && process.env.NODE_ENV !== 'production') {
     try {
       const parsed = new URL(origin);
@@ -99,7 +109,15 @@ app.use('/api', (req, res, next) => {
       isLocalOrigin = parsed.protocol === 'http:' && localHost && parsed.host.toLowerCase() === String(req.get('host') || '').toLowerCase();
     } catch {}
   }
-  if (req.method !== 'GET' && origin && origin !== PUBLIC_URL.origin && !isLocalOrigin) {
+  return isLocalOrigin || isRenderOrigin;
+}
+app.use((req, res, next) => cors({
+  origin: (origin, callback) => callback(null, isAllowedOrigin(origin, req)),
+  allowedHeaders: ['Content-Type', 'Authorization', 'Idempotency-Key']
+})(req, res, next));
+app.use('/api', (req, res, next) => {
+  const origin = req.headers.origin;
+  if (req.method !== 'GET' && origin && !isAllowedOrigin(origin, req)) {
     return res.status(403).json({ error: 'Origin not allowed.' });
   }
   next();
@@ -178,9 +196,6 @@ app.get(PRIVATE_DATA_PATH, (req, res) => {
   res.setHeader('Cache-Control', 'no-store, private');
   res.setHeader('X-Robots-Tag', 'noindex, nofollow, noarchive');
   res.redirect('/#' + PRIVATE_DATA_PATH);
-});
-app.get(['/inter.woff2', '/instrument-serif-italic.woff2'], (req, res) => {
-  res.sendFile(path.join(__dirname, path.basename(req.path)));
 });
 // Explicitly expose only image assets. Other project files remain private.
 app.use('/images', (req, res, next) => {
