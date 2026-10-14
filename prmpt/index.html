@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Browse ten prmpt concept outfit studies by year tag and designer reference.">
+  <title>prmpt | Concept Archive</title>
+  <link rel="preload" href="../prmpt-assets/fonts/InterTight%5Bwght%5D.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <div id="scroll-spacer" aria-hidden="true"></div>
+
+  <header class="hero-scene" id="top">
+    <div class="hero-media" id="main-canvas" aria-hidden="true">
+      <video id="hero-video-right" class="hero-video is-active" muted playsinline preload="auto" poster="" src="../prmpt-assets/videos/hero-right.mp4"></video>
+      <video id="hero-video-left" class="hero-video" muted playsinline preload="auto" poster="" src="../prmpt-assets/videos/hero-left.mp4"></video>
+      <div class="hero-shade"></div>
+    </div>
+
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="wordmark" href="#top" aria-label="prmpt home">prmpt<sup>®</sup></a>
+      <div class="desktop-links">
+        <a href="#archive" data-flow-target="archive">Archive</a>
+        <a href="#concept-note" data-flow-target="concept-note">Concept note</a>
+      </div>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
+        <span></span><span></span>
+      </button>
+      <div class="menu-panel" id="site-menu" hidden>
+        <a href="#archive" data-flow-target="archive">Archive</a>
+        <a href="#concept-note" data-flow-target="concept-note">Concept note</a>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <h1 class="hero-title">prmpt</h1>
+
+      <div class="hero-utility" aria-label="Archive reference tags">
+        <span class="utility-heading">REFERENCE TAGS</span>
+        <ul>
+          <li><span>2022–25</span><small>YEAR INDEX</small></li>
+          <li><span>Rick Owens</span><small>DESIGNER REFERENCE</small></li>
+          <li><span>Balenciaga</span><small>DESIGNER REFERENCE</small></li>
+          <li><span>Vetements</span><small>DESIGNER REFERENCE</small></li>
+        </ul>
+      </div>
+
+      <div class="hero-markers" aria-hidden="true"><span>+</span><span>+</span><span>+</span><span>+</span></div>
+
+      <div class="hero-copy">
+        <p>Concept outfit studies indexed by year tag and designer reference.</p>
+        <a class="hero-action" href="#archive" data-flow-target="archive">Explore looks <span aria-hidden="true">↘</span></a>
+      </div>
+
+      <figure class="hero-preview" aria-label="Featured concept study">
+        <div class="preview-image">
+          <img src="../prmpt-assets/gallery/look-01.webp" alt="" fetchpriority="high">
+        </div>
+        <figcaption>
+          <span class="preview-kicker">LOOK 01 / SELECTED STUDY</span>
+          <strong>2022</strong>
+          <span>Rick Owens · reference</span>
+        </figcaption>
+      </figure>
+
+      <p class="hero-copyright">© 2026 prmpt</p>
+    </div>
+  </header>
+
+  <div class="archive-panel" id="archive-panel">
+    <main class="archive-flow" id="archive-flow">
+      <section class="concept-note" id="concept-note" aria-labelledby="concept-title">
+        <img class="concept-image" data-reveal="media" src="../prmpt-assets/gallery/look-01.webp" alt="Concept outfit study in a dark knit cap and black clothing" fetchpriority="high">
+        <div class="concept-overlay" aria-hidden="true"></div>
+        <h2 id="concept-title" data-reveal="rise">Concept looks.<br>Not runway records.</h2>
+      </section>
+
+      <section class="archive-section" id="archive" aria-labelledby="archive-title">
+        <div class="archive-heading" data-reveal="rise">
+          <div>
+            <p class="section-kicker">LOOK INDEX</p>
+            <h2 id="archive-title">Find a look<br>by year or designer.</h2>
+          </div>
+          <div class="archive-filters" aria-label="Filter concept studies">
+            <label class="filter-control">
+              <span>Year</span>
+              <select id="year-filter" name="year">
+                <option value="all">All years</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+              </select>
+            </label>
+            <label class="filter-control">
+              <span>Designer reference</span>
+              <select id="designer-filter" name="designer">
+                <option value="all">All references</option>
+                <option value="rick-owens">Rick Owens</option>
+                <option value="balenciaga">Balenciaga</option>
+                <option value="vetements">Vetements</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <p class="archive-note" data-reveal="slide">Original concept studies, not official runway records. Year and designer names are reference tags, not credits or endorsements.</p>
+        <p class="result-count" id="result-count" aria-live="polite">10 concept studies</p>
+
+        <div class="look-grid" id="look-grid" aria-label="Concept outfit studies">
+          <button class="look-card" type="button" data-look="1" data-year="2022" data-designer="rick-owens" aria-pressed="true" aria-label="Select look 01, 2022 concept tag, Rick Owens reference" data-reveal="rise">
+            <span class="look-media"><img src="../prmpt-assets/gallery/look-01.webp" alt="" loading="lazy" decoding="async"><span class="look-index">01 / 2022</span></span>
+            <span class="look-caption"><strong>Look 01</strong><span>2022 · year tag</span><span>Rick Owens · reference</span></span>
+          </button>
+          <button class="look-card" type="button" data-look="2" data-year="2023" data-designer="balenciaga" aria-pressed="false" aria-label="Select look 02, 2023 concept tag, Balenciaga reference" data-reveal="rise">
+            <span class="look-media"><img src="../prmpt-assets/gallery/look-02.webp" alt="" loading="lazy" decoding="async"><span class="look-index">02 / 2023</span></span>
+            <span class="look-caption"><strong>Look 02</strong><span>2023 · year tag</span><span>Balenciaga · reference</span></span>
+          </button>
+          <button class="look-card" type="button" data-look="3" data-year="2024" data-designer="vetements" aria-pressed="false" aria-label="Select look 03, 2024 concept tag, Vetements reference" data-reveal="rise">
+            <span class="look-media"><img src="../prmpt-assets/gallery/look-03.webp" alt="" loading="lazy" decoding="async"><span class="look-index">03 / 2024</span></span>
+            <span class="look-caption"><strong>Look 03</strong><span>2024 · year tag</span><span>Vetements · reference</span></span>
+          </button>
+          <button class="look-card" type="button" data-look="4" data-year="2025" data-designer="rick-owens" aria-pressed="false" aria-label="Select look 04, 2025 concept tag, Rick Owens reference" data-reveal="rise">
+            <span class="look-media"><img src="../prmpt-assets/gallery/look-04.png" alt="" loading="lazy" decoding="async"><span class="look-index">04 / 2025</span></span>
+            <span class="look-caption"><strong>Look 04</strong><span>2025 · year tag</span><span>Rick Owens · reference</span></span>
+          </button>
+          <button class="look-card" type="button" data-look="5" data-year="2022" data-designer="balenciaga" aria-pressed="false" aria-label="Select look 05, 2022 concept tag, Balenciaga reference" data-reveal="rise">
+            <span class="look-media"><img src="../prmpt-assets/gallery/look-05.webp" alt="" loading="lazy" decoding="async"><span class="look-index">05 / 2022</span></span>
+            <span class="look-caption"><strong>Look 05</strong><span>2022 · year tag</span><span>Balenciaga · reference</span></span>
+          </button>
+          <button class="look-card" type="button" data-look="6" data-year="2023" data-designer="vetements" aria-pressed="false" aria-label="Select look 06, 2023 concept tag, Vetements reference" data-reveal="rise">
+            <span class="look-media"><img src="../prmpt-assets/gallery/look-06.webp" alt="" loading="lazy" decoding="async"><span class="look-index">06 / 2023</span></span>
+            <span class="look-caption"><strong>Look 06</strong><span>2023 · year tag</span><span>Vetements · reference</span></span>
+          </button>
+          <button class="look-card" type="button" data-look="7" data-year="2024" data-designer="rick-owens" aria-pressed="false" aria-label="Select look 07, 2024 concept tag, Rick Owens reference" data-reveal="rise">
+            <span class="look-media"><img src="../prmpt-assets/gallery/look-07.webp" alt="" loading="lazy" decoding="async"><span class="look-index">07 / 2024</span></span>
+            <span class="look-caption"><strong>Look 07</strong><span>2024 · year tag</span><span>Rick Owens · reference</span></span>
+          </button>
+          <button class="look-card" type="button" data-look="8" data-year="2025" data-designer="balenciaga" aria-pressed="false" aria-label="Select look 08, 2025 concept tag, Balenciaga reference" data-reveal="rise">
+            <span class="look-media"><img src="../prmpt-assets/gallery/look-08.png" alt="" loading="lazy" decoding="async"><span class="look-index">08 / 2025</span></span>
+            <span class="look-caption"><strong>Look 08</strong><span>2025 · year tag</span><span>Balenciaga · reference</span></span>
+          </button>
+          <button class="look-card" type="button" data-look="9" data-year="2022" data-designer="vetements" aria-pressed="false" aria-label="Select look 09, 2022 concept tag, Vetements reference" data-reveal="rise">
+            <span class="look-media"><img src="../prmpt-assets/gallery/look-09.webp" alt="" loading="lazy" decoding="async"><span class="look-index">09 / 2022</span></span>
+            <span class="look-caption"><strong>Look 09</strong><span>2022 · year tag</span><span>Vetements · reference</span></span>
+          </button>
+          <button class="look-card" type="button" data-look="10" data-year="2024" data-designer="balenciaga" aria-pressed="false" aria-label="Select look 10, 2024 concept tag, Balenciaga reference" data-reveal="rise">
+            <span class="look-media"><img src="../prmpt-assets/gallery/look-10.png" alt="" loading="lazy" decoding="async"><span class="look-index">10 / 2024</span></span>
+            <span class="look-caption"><strong>Look 10</strong><span>2024 · year tag</span><span>Balenciaga · reference</span></span>
+          </button>
+        </div>
+      </section>
+
+      <section class="selected-section" id="selected-look" aria-labelledby="selected-title">
+        <div class="selected-copy" data-reveal="slide">
+          <div class="selected-overline"><span>SELECTED STUDY</span><span id="selected-number">01 / 10</span></div>
+          <h2 id="selected-title">Look 01.<br>Concept study.</h2>
+          <dl class="selected-facts">
+            <div><dt>Year tag</dt><dd id="selected-year">2022</dd></div>
+            <div><dt>Designer reference</dt><dd id="selected-designer">Rick Owens</dd></div>
+            <div><dt>Entry type</dt><dd>Concept study</dd></div>
+          </dl>
+          <p class="selected-note">These tags describe this concept entry, not an official show or designer credit.</p>
+        </div>
+        <div class="selected-gallery" data-reveal="media">
+          <figure class="selected-image-frame">
+            <img id="selected-image" src="../prmpt-assets/gallery/look-01.webp" alt="Selected concept outfit study, look 01" fetchpriority="high">
+          </figure>
+          <div class="selected-thumbnails" id="selected-thumbnails" aria-label="Other concept studies">
+            <button class="selected-thumb" type="button" data-select-look="2" aria-label="Select look 02"><img src="../prmpt-assets/gallery/look-02.webp" alt="" loading="lazy"><span>02</span></button>
+            <button class="selected-thumb" type="button" data-select-look="3" aria-label="Select look 03"><img src="../prmpt-assets/gallery/look-03.webp" alt="" loading="lazy"><span>03</span></button>
+            <button class="selected-thumb" type="button" data-select-look="4" aria-label="Select look 04"><img src="../prmpt-assets/gallery/look-04.png" alt="" loading="lazy"><span>04</span></button>
+            <button class="selected-thumb" type="button" data-select-look="5" aria-label="Select look 05"><img src="../prmpt-assets/gallery/look-05.webp" alt="" loading="lazy"><span>05</span></button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <section class="closing-overlay" id="outro" aria-labelledby="outro-title">
+    <div class="closing-copy">
+      <h2 id="outro-title"><span class="desktop-lines">View your<br>selected</span><span class="mobile-lines">View your selected</span><br class="desktop-only"> concept look.</h2>
+      <p>Open its full image and reference tags.</p>
+      <button class="view-button" id="view-selected" type="button">View look <span aria-hidden="true">↗</span></button>
+    </div>
+    <footer class="page-footer" id="footer">
+      <span>© 2026 prmpt</span>
+      <a href="./privacy.html">Privacy policy</a>
+    </footer>
+  </section>
+</body>
+</html>

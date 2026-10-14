@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const crypto = require('node:crypto');
 const nodemailer = require('nodemailer');
+const { minibusFare } = require('./pricing');
 
 // Node 22 loads local configuration; hosting environment variables take precedence.
 if (fs.existsSync(path.join(__dirname, '.env'))) {
@@ -14,7 +15,8 @@ if (fs.existsSync(path.join(__dirname, '.env'))) {
 const app = express();
 const PORT = process.env.PORT || 3000;
 const configured = value => typeof value === 'string' && value.trim().length > 0 && !/placeholder|your[-_]|example\.com|change[-_]me/i.test(value);
-const PUBLIC_URL = new URL(process.env.CLIENT_URL || `http://localhost:${PORT}`);
+const PUBLIC_URL = new URL(process.env.CLIENT_URL || process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`);
+const RENDER_HOSTNAME = (process.env.RENDER_EXTERNAL_HOSTNAME || '').toLowerCase();
 const ADMIN_TOKEN = process.env.DRIVER_ADMIN_TOKEN || '';
 const PRIVATE_DATA_PATH = '/wry-ops-8f3c9a71d6e24b50';
 if (!['https:', 'http:'].includes(PUBLIC_URL.protocol) || (PUBLIC_URL.protocol !== 'https:' && !['localhost', '127.0.0.1'].includes(PUBLIC_URL.hostname))) {
@@ -87,9 +89,35 @@ if (configured(STRIPE_KEY)) {
   }
 }
 
-app.use(cors({ origin: PUBLIC_URL.origin, allowedHeaders: ['Content-Type', 'Authorization', 'Idempotency-Key'] }));
+function isAllowedOrigin(origin, req) {
+  if (!origin || origin === PUBLIC_URL.origin) return true;
+  let isLocalOrigin = false;
+  let isRenderOrigin = false;
+  if (origin && RENDER_HOSTNAME) {
+    try {
+      const parsed = new URL(origin);
+      const requestHost = String(req.get('host') || '').toLowerCase();
+      isRenderOrigin = parsed.protocol === 'https:' &&
+        parsed.host.toLowerCase() === RENDER_HOSTNAME &&
+        parsed.host.toLowerCase() === requestHost;
+    } catch {}
+  }
+  if (origin && process.env.NODE_ENV !== 'production') {
+    try {
+      const parsed = new URL(origin);
+      const localHost = ['localhost', '127.0.0.1', '[::1]'].includes(parsed.host.replace(/:\d+$/, '').toLowerCase());
+      isLocalOrigin = parsed.protocol === 'http:' && localHost && parsed.host.toLowerCase() === String(req.get('host') || '').toLowerCase();
+    } catch {}
+  }
+  return isLocalOrigin || isRenderOrigin;
+}
+app.use((req, res, next) => cors({
+  origin: (origin, callback) => callback(null, isAllowedOrigin(origin, req)),
+  allowedHeaders: ['Content-Type', 'Authorization', 'Idempotency-Key']
+})(req, res, next));
 app.use('/api', (req, res, next) => {
-  if (req.method !== 'GET' && req.headers.origin && req.headers.origin !== PUBLIC_URL.origin) {
+  const origin = req.headers.origin;
+  if (req.method !== 'GET' && origin && !isAllowedOrigin(origin, req)) {
     return res.status(403).json({ error: 'Origin not allowed.' });
   }
   next();
@@ -161,6 +189,13 @@ app.get('/webhook-setup', (req, res) => {
 });
 
 // Never expose order data, source files, .env or the former fake payment form.
+app.get('/prmpt', (req, res, next) => req.path === '/prmpt' ? res.redirect(308, '/prmpt/') : next());
+app.use('/prmpt-assets', express.static(path.join(__dirname, 'assets', 'prmpt'), {
+  dotfiles: 'deny', index: false, fallthrough: true, maxAge: '1d', immutable: false
+}));
+app.use('/prmpt', express.static(path.join(__dirname, 'prmpt'), {
+  dotfiles: 'deny', index: 'index.html', fallthrough: true, maxAge: '1d', immutable: false
+}));
 app.get(['/', '/index.html'], (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 app.get('/driver', (req, res) => res.redirect('/#/ridic'));
 app.get('/dispatch', (req, res) => res.redirect('/#/dispecink'));
@@ -168,9 +203,6 @@ app.get(PRIVATE_DATA_PATH, (req, res) => {
   res.setHeader('Cache-Control', 'no-store, private');
   res.setHeader('X-Robots-Tag', 'noindex, nofollow, noarchive');
   res.redirect('/#' + PRIVATE_DATA_PATH);
-});
-app.get(['/inter.woff2', '/instrument-serif-italic.woff2'], (req, res) => {
-  res.sendFile(path.join(__dirname, path.basename(req.path)));
 });
 // Explicitly expose only image assets. Other project files remain private.
 app.use('/images', (req, res, next) => {
@@ -185,6 +217,13 @@ const FLEET_TARIFFS = {
   mercE:   { base: 1290, rate: 55, hour: 1190, city: 790 },
   mercV:   { base: 1790, rate: 65, hour: 1490, city: 990 }
 };
+
+const TOUR_CATALOG = Object.freeze({
+  'karlovy-vary': { name: 'Karlovy Vary', from: 'Praha – centrum', to: 'Karlovy Vary', duration: 10 },
+  dresden: { name: 'Dresden', from: 'Praha – centrum', to: 'Drážďany / Dresden', duration: 10 },
+  'cesky-krumlov': { name: 'Český Krumlov', from: 'Praha – centrum', to: 'Český Krumlov', duration: 12 },
+  'spindleruv-mlyn': { name: 'Špindlerův Mlýn', from: 'Praha – centrum', to: 'Špindlerův Mlýn', duration: 12 }
+});
 
 const PLACES = [
   { n: 'Letiště Praha (PRG)', g: 'prg', km: 17, lat: 50.1023, lng: 14.2637 },
@@ -357,10 +396,44 @@ async function roadRoute(a, b) {
   const route = d.routes && d.routes[0];
   if (!route || !Number.isFinite(route.distance) || !Number.isFinite(route.duration) || route.distance < 10) throw new Error('no route found');
 
-  const out = { at: Date.now(), km: route.distance / 1000, min: route.duration / 60 };
+  const out = { at: Date.now(), km: route.distance / 1000, min: route.duration / 60, source: 'osrm' };
   if (ROUTE_CACHE.size >= 800) ROUTE_CACHE.delete(ROUTE_CACHE.keys().next().value);
   ROUTE_CACHE.set(key, out);
   return out;
+}
+
+async function geoapifyRoute(a, b) {
+  const cacheKey = `geoapify:${a.lat.toFixed(4)},${a.lng.toFixed(4)};${b.lat.toFixed(4)},${b.lng.toFixed(4)}`;
+  const hit = ROUTE_CACHE.get(cacheKey);
+  if (hit && Date.now() - hit.at < CACHE_TTL) return hit;
+  const key = geoKey();
+  if (!configured(key)) throw new Error('geoapify_routing_unavailable');
+  const url = new URL('https://api.geoapify.com/v1/routing');
+  url.searchParams.set('waypoints', `${a.lat},${a.lng}|${b.lat},${b.lng}`);
+  url.searchParams.set('mode', 'drive');
+  url.searchParams.set('apiKey', key);
+  const response = await fetch(url, { headers: { 'User-Agent': UA, Accept: 'application/json' }, signal: AbortSignal.timeout(12000) });
+  if (!response.ok) throw new Error('geoapify_routing_unavailable');
+  const data = await response.json();
+  const route = data.features?.[0]?.properties;
+  const distanceKm = route?.distance_units === 'kilometers' ? route.distance : route?.distance / 1000;
+  const durationMin = route?.time / 60;
+  if (!Number.isFinite(distanceKm) || distanceKm <= 0 || !Number.isFinite(durationMin) || durationMin <= 0) {
+    throw new Error('geoapify_routing_unavailable');
+  }
+  const result = { at: Date.now(), km: distanceKm, min: durationMin, source: 'geoapify' };
+  if (ROUTE_CACHE.size >= 800) ROUTE_CACHE.delete(ROUTE_CACHE.keys().next().value);
+  ROUTE_CACHE.set(cacheKey, result);
+  return result;
+}
+
+async function pricedRoadRoute(a, b) {
+  try {
+    return await geoapifyRoute(a, b);
+  } catch (err) {
+    console.warn('Geoapify routing unavailable; using OSRM:', err.message);
+    return roadRoute(a, b);
+  }
 }
 
 const textValue = (value, max = 500) => typeof value === 'string' ? value.trim().slice(0, max) : '';
@@ -389,13 +462,22 @@ function orderLocations(order) {
   const get = (key, field) => saved[key]?.label
     ? locationSnapshot(saved[key], saved[key].label)
     : locationSnapshot(compatibleLocation(b[field + 'Geo'], b[field]), b[field]);
+  const stopovers = Array.isArray(saved.stopovers) ? saved.stopovers : Array.isArray(b.tourStops) ? b.tourStops : [];
   return {
     pickup: get('pickup', 'from'),
     destination: b.mode === 'hourly' ? null : get('destination', 'to'),
-    stopover: saved.stopover?.label || b.stopover ? get('stopover', 'stopover') : null
+    stopover: saved.stopover?.label || b.stopover ? get('stopover', 'stopover') : null,
+    stopovers: stopovers.map(point => locationSnapshot(point, point?.label)).filter(point => point.label)
   };
 }
 const locationText = p => p ? p.full || [p.label, p.address].filter(Boolean).join(', ') : '';
+function validTourStops(stops) {
+  return Array.isArray(stops) && stops.length <= 5
+    && stops.every(point => safePoint(point) && typeof point.label === 'string' && point.label.trim().length >= 2 && point.label.length <= 160
+      && (point.address == null || typeof point.address === 'string' && point.address.length <= 500)
+      && (point.full == null || typeof point.full === 'string' && point.full.length <= 700))
+    && stops.every((point, index) => stops.slice(0, index).every(previous => previous.label.trim().toLowerCase() !== point.label.trim().toLowerCase()));
+}
 
 // Keep the selected place and its full address independent of the trip category.
 async function resolvePoint(input) {
@@ -420,9 +502,7 @@ const isClarionCongress = p => safePoint(p)
 // Ціна для одного класу авто
 // Minivan má дегресивну ставку: чим більше км, тим нижча ціна за км.
 function minibusMetered(km) {
-  if (km <= 50) return Math.round(km * 54 / 10) * 10;
-  if (km <= 100) return Math.round(km * 50 / 10) * 10;
-  return Math.round(km * 43 / 10) * 10;
+  return minibusFare(km);
 }
 
 function priceForCar(carKey, ctx) {
@@ -461,14 +541,17 @@ function bookingConfirmationTemplate(order) {
   const cars = { sedan: 'Sedan Standard', minibus: 'Minivan Standard', mercE: 'Business Sedan', mercV: 'Business Minivan' };
   const rows = [
     [tr('Rezervace', 'Booking'), order.orderId || order.id],
+    ...(b.tourName ? [[tr('Výlet', 'Tour'), b.tourName]] : []),
     [tr('Vyzvednutí', 'Pickup'), locationText(points.pickup)],
     [tr('Cíl', 'Destination'), points.destination ? locationText(points.destination) : tr('Hodinová dispozice', 'Hourly hire') + ` (${b.hours} h)`],
-    ...(points.stopover ? [[tr('Zastávka', 'Stopover'), locationText(points.stopover)]] : []),
+    ...(points.stopovers.length
+      ? [[tr('Místa výletu', 'Tour stops'), points.stopovers.map((point, i) => `${i + 1}. ${locationText(point)}`).join('\n')]]
+      : points.stopover ? [[tr('Zastávka', 'Stopover'), locationText(points.stopover)]] : []),
     [tr('Datum a čas', 'Date and time'), `${b.date} ${b.time} (Europe/Prague)`],
     ...(b.roundtrip ? [[tr('Zpáteční jízda', 'Return ride'), `${b.retDate} ${b.retTime}: ${locationText(points.destination)} -> ${locationText(points.pickup)}`]] : []),
     [tr('Vůz', 'Vehicle'), cars[b.car] || b.car],
     [tr('Počet osob', 'Passengers'), b.pax],
-    ...(Number.isFinite(b.distanceKm) ? [[tr('Trasa po silnici', 'Road route'), `${b.distanceKm} km${Number.isFinite(b.durationMin) ? ` / ${b.durationMin} min` : ''}`]] : []),
+    ...(Number.isFinite(b.distanceKm) ? [[tr(b.roundtrip ? 'Celá zpáteční trasa po silnici' : 'Trasa po silnici', b.roundtrip ? 'Full round-trip road distance' : 'Road distance'), `${b.distanceKm} km${Number.isFinite(b.durationMin) ? ` / ${b.durationMin} min` : ''}`]] : []),
     [tr('Zavazadla / dětské sedačky', 'Large bags / cabin bags / child seats'), `${b.bagsBig || 0} / ${b.bagsSmall || 0} / ${b.seats || 0}`],
     ...(b.flight ? [[tr('Let', 'Flight'), b.flight]] : []),
     [tr('Kontakt', 'Contact'), [b.name, b.phone, b.email].filter(Boolean).join(' / ')],
@@ -481,7 +564,9 @@ function bookingConfirmationTemplate(order) {
   ];
   return `<!DOCTYPE html><html lang="${en ? 'en' : 'cs'}"><head><meta charset="UTF-8"></head><body style="margin:0;padding:24px;background:#0d0c08;color:#eee7d8;font-family:Arial,sans-serif"><div style="max-width:620px;margin:auto;padding:28px;border:1px solid #3b3320">
     <h1 style="color:#f5c66b;font-size:24px">Transfer by Van / ${tr('Přijali jsme žádost', 'Request received')}</h1>
-    <p style="font-size:14px;line-height:1.7;color:#b9b0a0">${tr('Přijetí žádosti ani platba ještě nepotvrzují přidělení vozu. Vyčkejte na odpověď dispečinku.', 'Receiving a request or payment does not confirm a vehicle assignment. Please await dispatch confirmation.')}</p>
+    <p style="font-size:14px;line-height:1.7;color:#b9b0a0">${b.tourId
+      ? tr('Platba byla přijata. Dostupnost minivanu a rezervaci výletu ještě musí potvrdit dispečink e-mailem.', 'Payment was received. Dispatch must still confirm minivan availability and the tour booking by e-mail.')
+      : tr('Přijetí žádosti ani platba ještě nepotvrzují přidělení vozu. Vyčkejte na odpověď dispečinku.', 'Receiving a request or payment does not confirm a vehicle assignment. Please await dispatch confirmation.')}</p>
     <table role="presentation" style="width:100%;border-collapse:collapse">${rows.map(([label, value]) => `<tr><td style="padding:12px 12px 12px 0;border-bottom:1px solid #342e20;color:#b9b0a0;vertical-align:top;font-size:12px;width:32%">${escapeHtml(label)}</td><td style="padding:12px 0;border-bottom:1px solid #342e20;font-size:14px;line-height:1.6;overflow-wrap:anywhere">${escapeHtml(value)}</td></tr>`).join('')}</table>
     <p style="font-size:12px;color:#b9b0a0;line-height:1.7">${tr('Trasu uchováváme přesně podle zvolených míst v žádosti.', 'The itinerary preserves the exact locations chosen in your request.')}</p>
     <div style="margin-top:20px;padding-top:16px;border-top:1px solid #342e20;font-size:11px;color:#8f8875">
@@ -527,6 +612,7 @@ function driverAssignedTemplate(order, driverName) {
 }
 
 function paymentSuccessTemplate(order) {
+  const tourPending = Boolean(order.booking?.tourId);
   return `
 <!DOCTYPE html>
 <html>
@@ -540,9 +626,9 @@ function paymentSuccessTemplate(order) {
 </style></head>
 <body>
   <div class="card">
-    <h1>✅ Платіж підтверджено</h1>
+    <h1>${tourPending ? '✅ Платіж прийнято' : '✅ Платіж підтверджено'}</h1>
     <p style="color:#9c9585;font-size:13px;line-height:1.6;margin-bottom:20px">
-      Ваша оплата успішно пройшла. Замовлення повністю підтверджене.
+      ${tourPending ? 'Оплату за тур прийнято. Доступність мінівена та бронювання ще має підтвердити диспетчер електронною поштою.' : 'Оплату успішно підтверджено.'}
     </p>
     
     <div class="row"><span class="label">Номер замовлення</span><span>${order.id}</span></div>
@@ -604,7 +690,8 @@ function bookingPoint(booking, name) {
 }
 function routeFingerprint(booking) {
   const keyPoint = input => typeof input === 'string' ? input.trim().toLowerCase() : safePoint(input) ? [input.label, input.address || '', input.full || '', input.lat, input.lng] : null;
-  return JSON.stringify([booking.mode, keyPoint(bookingPoint(booking, 'from')), keyPoint(bookingPoint(booking, 'to')), String(booking.stopover || '').trim(), keyPoint(booking.stopoverGeo), Number(booking.hours) || 0, !!booking.roundtrip, String(booking.promo || '').toUpperCase()]);
+  const tourStops = Array.isArray(booking.tourStops) ? booking.tourStops.map(point => [String(point?.label || '').trim(), keyPoint(point)]) : [];
+  return JSON.stringify([booking.mode, keyPoint(bookingPoint(booking, 'from')), keyPoint(bookingPoint(booking, 'to')), String(booking.stopover || '').trim(), keyPoint(booking.stopoverGeo), tourStops, Number(booking.hours) || 0, !!booking.roundtrip, String(booking.promo || '').toUpperCase(), String(booking.tourId || '')]);
 }
 const bounded = (v, min, max) => Number.isInteger(v) && v >= min && v <= max;
 function pragueTimestamp(date, time) {
@@ -619,6 +706,16 @@ function pragueTimestamp(date, time) {
 function bookingError(b) {
   const caps = { sedan: [4, 3, 1], minibus: [7, 7, 1], mercE: [3, 2, 0], mercV: [7, 7, 1] };
   if (!b || !Object.hasOwn(caps, b.car) || !['from', 'to', 'long', 'hourly'].includes(b.mode)) return 'Invalid vehicle or trip type.';
+  if (b.tourId) {
+    const tour = typeof b.tourId === 'string' && Object.hasOwn(TOUR_CATALOG, b.tourId) ? TOUR_CATALOG[b.tourId] : null;
+    const departureHour = Number(String(b.time || '').slice(0, 2));
+    const returnTime = `${String(departureHour + (tour?.duration || 0)).padStart(2, '0')}:${String(b.time || '').slice(3)}`;
+    if (!tour || b.mode !== 'long' || b.from !== tour.from || b.to !== tour.to || b.car !== 'minibus' || b.roundtrip !== true || b.pay !== 'online'
+      || !/^0[6-9]:00$|^10:00$/.test(b.time || '') || b.retDate !== b.date || b.retTime !== returnTime) return 'Invalid tour booking.';
+    if (!validTourStops(b.tourStops)) return 'Choose up to five distinct tour stops from the place suggestions.';
+  } else if (b.tourStops != null && (!Array.isArray(b.tourStops) || b.tourStops.length)) {
+    return 'Tour stops are only valid for a tour booking.';
+  }
   if (!bounded(b.pax, 1, caps[b.car][0]) || !bounded(b.seats, 0, Math.min(b.pax, caps[b.car][2])) || !bounded(b.bagsBig, 0, caps[b.car][1]) || !bounded(b.bagsSmall, 0, 4)) return 'Vehicle capacity exceeded.';
   if (b.bagsBig * 2 + b.bagsSmall + (b.pram ? 2 : 0) > caps[b.car][1] * 2 + 2) return 'Luggage capacity exceeded.';
   if (typeof b.name !== 'string' || b.name.trim().length < 2 || b.name.length > 60 || typeof b.email !== 'string' || !/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(b.email) || b.email.length > 120 || !/^[+\d ()-]{9,25}$/.test(String(b.phone || ''))) return 'Please check the contact details.';
@@ -638,7 +735,14 @@ app.post('/api/quote', async (req, res) => {
   try {
     const booking = req.body.booking || {};
     if (!['from', 'to', 'long', 'hourly'].includes(booking.mode)) return res.status(400).json({ ok: false, reason: 'invalid_mode' });
-    let from = null, to = null, via = null, km = null, min = null, fixedAirport = false;
+    if (booking.tourId) {
+      const tour = typeof booking.tourId === 'string' && Object.hasOwn(TOUR_CATALOG, booking.tourId) ? TOUR_CATALOG[booking.tourId] : null;
+      if (!tour || booking.mode !== 'long' || booking.from !== tour.from || booking.to !== tour.to || booking.car !== 'minibus' || booking.roundtrip !== true || booking.pay !== 'online') return res.status(400).json({ ok: false, reason: 'invalid_tour' });
+      if (!validTourStops(booking.tourStops)) return res.status(400).json({ ok: false, reason: 'invalid_tour_stops' });
+    } else if (booking.tourStops != null && (!Array.isArray(booking.tourStops) || booking.tourStops.length)) {
+      return res.status(400).json({ ok: false, reason: 'invalid_tour_stops' });
+    }
+    let from = null, to = null, via = null, tourStops = [], km = null, min = null, outboundKm = null, fixedAirport = false, routeSource = null;
     if (booking.mode === 'hourly') {
       if (!bounded(booking.hours, 2, 12)) return res.status(400).json({ ok: false, reason: 'invalid_hours' });
       from = await resolvePoint(bookingPoint(booking, 'from'));
@@ -650,9 +754,19 @@ app.post('/api/quote', async (req, res) => {
       fixedAirport = !booking.stopover && ((isAirport(from) && isPragueCity(to)) || (isAirport(to) && isPragueCity(from)));
       via = booking.stopover ? await resolvePoint(booking.stopoverGeo) : null;
       if (booking.stopover && (!via || via.label !== booking.stopover)) return res.status(422).json({ ok: false, reason: 'select_stopover' });
-      const legs = via ? [await roadRoute(from, via), await roadRoute(via, to)] : [await roadRoute(from, to)];
-      km = legs.reduce((sum, leg) => sum + leg.km, 0);
-      min = legs.reduce((sum, leg) => sum + leg.min, 0);
+      tourStops = (booking.tourStops || []).map(point => locationSnapshot(point, point.label));
+      const routeLeg = pricedRoadRoute;
+      const outboundPoints = [from, ...(tourStops.length ? tourStops : via ? [via] : []), to];
+      const outboundLegs = [];
+      for (let i = 1; i < outboundPoints.length; i++) outboundLegs.push(await routeLeg(outboundPoints[i - 1], outboundPoints[i]));
+      const returnPoints = [to, ...(tourStops.length ? [...tourStops].reverse() : via ? [via] : []), from];
+      const returnLegs = [];
+      if (booking.roundtrip) for (let i = 1; i < returnPoints.length; i++) returnLegs.push(await routeLeg(returnPoints[i - 1], returnPoints[i]));
+      const allLegs = [...outboundLegs, ...returnLegs];
+      outboundKm = outboundLegs.reduce((sum, leg) => sum + leg.km, 0);
+      km = allLegs.reduce((sum, leg) => sum + leg.km, 0);
+      min = allLegs.reduce((sum, leg) => sum + leg.min, 0);
+      routeSource = [...new Set(allLegs.map(leg => leg.source || 'osrm'))].join('+');
     }
 
     const clarionAirport = booking.mode !== 'hourly' && !booking.stopover
@@ -660,26 +774,31 @@ app.post('/api/quote', async (req, res) => {
     const prices = {};
     for (const key of Object.keys(FLEET_TARIFFS)) {
       const clarionFare = clarionAirport ? { sedan: 1170, minibus: 1514 }[key] : null;
+      const fullLoopMinibus = key === 'minibus' && booking.roundtrip && booking.mode !== 'hourly' && !fixedAirport && !clarionAirport;
       const p = clarionFare
         ? { base: clarionFare, kind: 'fixed' }
-        : priceForCar(key, { mode: booking.mode, hours: booking.hours, fixedAirport, km });
-      let price = applyExtras(p.base, booking);
+        : priceForCar(key, { mode: booking.mode, hours: booking.hours, fixedAirport, km: fullLoopMinibus ? km : outboundKm });
+      const price = applyExtras(p.base, fullLoopMinibus ? { ...booking, roundtrip: false } : booking);
+      if (fullLoopMinibus) {
+        price.base = Math.min(p.base, Math.round((p.base * outboundKm / km) / 10) * 10);
+        price.returnBase = p.base - price.base;
+      }
       if (clarionAirport && key === 'sedan' && booking.roundtrip) {
         const roundtrip = applyExtras(2253, { ...booking, roundtrip: false });
-        price = { ...roundtrip, base: p.base, subtotal: p.base * 2, discount: p.base * 2 - roundtrip.total };
+        Object.assign(price, { ...roundtrip, base: p.base, returnBase: p.base, subtotal: p.base * 2, discount: p.base * 2 - roundtrip.total });
       }
-      prices[key] = { ...price, kind: p.kind };
+      prices[key] = { ...price, returnBase: price.returnBase ?? (booking.roundtrip && booking.mode !== 'hourly' ? p.base : 0), kind: p.kind };
     }
 
     const quoteId = newToken();
     const quote = {
       ok: true,
       quoteId,
-      kind: booking.mode === 'hourly' ? 'hourly' : fixedAirport || clarionAirport ? 'fixed' : 'metered',
-      from, to, stopover: via,
+      kind: booking.tourId ? 'fixed' : booking.mode === 'hourly' ? 'hourly' : fixedAirport || clarionAirport ? 'fixed' : 'metered',
+      from, to, stopover: via, stopovers: tourStops,
       km: km ? Math.round(km * 10) / 10 : null,
       min: min ? Math.max(1, Math.round(min)) : null,
-      routeSource: km ? 'osrm' : null,
+      routeSource: km ? routeSource : null,
       expiresAt: Date.now() + 15 * 60000,
       prices
     };
@@ -713,12 +832,13 @@ app.post('/api/checkout', async (req, res) => {
     const locations = {
       pickup: locationSnapshot(quote.from, booking.from),
       destination: booking.mode === 'hourly' ? null : locationSnapshot(quote.to, booking.to),
-      stopover: quote.stopover ? locationSnapshot(quote.stopover, booking.stopover) : null
+      stopover: quote.stopover ? locationSnapshot(quote.stopover, booking.stopover) : null,
+      stopovers: quote.stopovers || []
     };
     const order = {
       id: orderId, orderId,
       locations,
-      booking: { ...booking, from: locations.pickup.label, to: locations.destination?.label || '', stopover: locations.stopover?.label || '', distanceKm: quote.km, durationMin: quote.min, fromGeo: locations.pickup, toGeo: locations.destination, stopoverGeo: locations.stopover },
+      booking: { ...booking, tourName: TOUR_CATALOG[booking.tourId]?.name || '', from: locations.pickup.label, to: locations.destination?.label || '', stopover: locations.stopover?.label || '', tourStops: locations.stopovers, distanceKm: quote.km, durationMin: quote.min, fromGeo: locations.pickup, toGeo: locations.destination, stopoverGeo: locations.stopover },
       accessHash: tokenHash(accessToken),
       stage: 0,
       amount: price.total,
@@ -765,15 +885,46 @@ app.post('/api/checkout', async (req, res) => {
     }
 
     if (stripe) {
+      const paymentMetadata = {
+        order_id: orderId,
+        service: booking.tourId ? 'tour' : booking.mode,
+        tour_id: booking.tourId || '',
+        tour_name: TOUR_CATALOG[booking.tourId]?.name || '',
+        pickup: locationText(locations.pickup).slice(0, 500),
+        destination: locationText(locations.destination).slice(0, 500),
+        stopover: locationText(locations.stopover).slice(0, 500),
+        tour_stops: locations.stopovers.map((point, i) => `${i + 1}. ${locationText(point)}`).join('; ').slice(0, 500),
+        date: booking.date,
+        departure_time: booking.time,
+        return_date: booking.retDate || '',
+        return_time: booking.retTime || '',
+        vehicle: booking.car,
+        passengers: String(booking.pax),
+        hours: booking.mode === 'hourly' ? String(booking.hours) : '',
+        round_trip: String(booking.roundtrip === true),
+        distance_km: quote.km == null ? '' : String(quote.km),
+        duration_min: quote.min == null ? '' : String(quote.min),
+        route_provider: quote.routeSource || 'not_applicable'
+      };
+      const paymentDescription = booking.tourId
+        ? `Private round-trip day tour, ${booking.date} ${booking.time}-${booking.retTime}, ${booking.pax} passengers, ${quote.km} km`
+        : booking.mode === 'hourly'
+          ? `Hourly vehicle hire, ${booking.hours} hours, ${booking.date} ${booking.time}, ${booking.pax} passengers`
+          : `${booking.mode} transfer, ${booking.date} ${booking.time}, ${booking.car}, ${booking.pax} passengers${quote.km == null ? '' : `, ${quote.km} km`}`;
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
+        customer_email: booking.email,
+        metadata: paymentMetadata,
+        payment_intent_data: { metadata: paymentMetadata },
         client_reference_id: orderId,
         line_items: [{
           price_data: {
             currency: 'czk',
             product_data: {
-              name: `Transfer by Van: ${locationText(locations.pickup)} -> ${locationText(locations.destination) || 'Hourly hire'}`.slice(0, 250),
-              description: `Vehicle: ${booking.car}, Pax: ${booking.pax || 1}`
+              name: booking.tourId
+                ? `Transfer by Van tour: ${TOUR_CATALOG[booking.tourId].name}`.slice(0, 250)
+                : `Transfer by Van: ${locationText(locations.pickup)} -> ${locationText(locations.destination) || 'Hourly hire'}`.slice(0, 250),
+              description: paymentDescription.slice(0, 500)
             },
             unit_amount: Math.round(price.total * 100)
           },
@@ -855,6 +1006,7 @@ function reservationView(order, detailed = false) {
   const base = {
     id: textValue(order.orderId || order.id, 80),
     locations: orderLocations(order),
+    tourName: textValue(b.tourName, 120),
     customerName: textValue(b.name || order.name, 80),
     date: textValue(b.date, 10), time: textValue(b.time, 5),
     car: textValue(b.car, 30), passengers: Number.isInteger(b.pax) ? b.pax : null,
@@ -912,7 +1064,7 @@ app.post('/api/operator/reservations/search', requireOperator, (req, res) => {
     if ((dateFrom && String(b.date || '') < dateFrom) || (dateTo && String(b.date || '') > dateTo)) return false;
     if (q) {
       const points = orderLocations(o);
-      const haystack = [o.orderId || o.id, b.name, b.phone, b.email, ...Object.values(points).map(locationText)].map(searchText).join(' ');
+      const haystack = [o.orderId || o.id, b.name, b.phone, b.email, b.tourName, ...Object.values(points).map(locationText), ...points.stopovers.map(locationText)].map(searchText).join(' ');
       if (!haystack.includes(q)) return false;
     }
     return true;

@@ -21,8 +21,6 @@
   <style>
     html, body { background: #000000 !important; color: #ffffff; }
     html[data-theme="light"], html[data-theme="light"] body { background: #ffffff !important; color: #18181b; }
-    @font-face { font-family: "Inter"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("inter.woff2") format("woff2"); }
-    @font-face { font-family: "Instrument Serif"; font-style: italic; font-weight: 400; font-display: swap; src: url("instrument-serif-italic.woff2") format("woff2"); }
     :root {
       --bg: #000000;
       --text: #ffffff;
@@ -82,8 +80,6 @@
     html[data-theme="light"] .lede, html[data-theme="light"] .media-caption span { color: #3f3f46; }
     html[data-theme="light"] .logo em, html[data-theme="light"] em { color: #8a6a10; }
     html[data-theme="light"] .eyebrow, html[data-theme="light"] .media-caption strong { color: #18181b; }
-    html[data-theme="light"] .pill { background: rgba(255,255,255,.86); border-color: rgba(9,9,11,.12); color: #3f3f46; box-shadow: var(--shadow); }
-    html[data-theme="light"] .pill .icon { color: #a07c1e; }
     html[data-theme="light"] .eyebrow-dot { background: #a07c1e; box-shadow: 0 0 8px rgba(160,124,30,.4); }
     html[data-theme="light"] .booking { background: var(--panel-3); border-color: rgba(160,124,30,.34); box-shadow: 0 16px 38px rgba(24,24,27,.10), inset 0 1px 0 rgba(255,255,255,.9); }
     html[data-theme="light"] .booking-note, html[data-theme="light"] .booking-foot, html[data-theme="light"] .foot-right .note { color: var(--ink-soft); }
@@ -122,12 +118,12 @@
     html[data-theme="light"] .home-title { color: #18181b; }
     html[data-theme="light"] .section-kicker, html[data-theme="light"] .kicker, html[data-theme="light"] .step-num,
     html[data-theme="light"] .footer-col h4, html[data-theme="light"] .meet-badge, html[data-theme="light"] .car-tag { color: #8a7233; }
-    html[data-theme="light"] .feature, html[data-theme="light"] .card, html[data-theme="light"] .route-card,
+    html[data-theme="light"] .feature, html[data-theme="light"] .card,
     html[data-theme="light"] .mini-car, html[data-theme="light"] .contact-card, html[data-theme="light"] .panel,
     html[data-theme="light"] .meet, html[data-theme="light"] .terminal-body, html[data-theme="light"] .interaction-panel,
     html[data-theme="light"] .banner, html[data-theme="light"] .empty-state { background: var(--panel-3); border-color: var(--line-soft); }
-    html[data-theme="light"] .feature:hover, html[data-theme="light"] .card:hover, html[data-theme="light"] .route-card:hover { border-color: rgba(160,124,30,.35); }
-    html[data-theme="light"] .feature h3, html[data-theme="light"] .card h3, html[data-theme="light"] .route-card h3,
+    html[data-theme="light"] .feature:hover, html[data-theme="light"] .card:hover { border-color: rgba(160,124,30,.35); }
+    html[data-theme="light"] .feature h3, html[data-theme="light"] .card h3,
     html[data-theme="light"] .mini-body h3, html[data-theme="light"] .section-h, html[data-theme="light"] .panel h2,
     html[data-theme="light"] .interaction-panel h2, html[data-theme="light"] .meet h3, html[data-theme="light"] .empty-state h2,
     html[data-theme="light"] .trip-route, html[data-theme="light"] .page-heading, html[data-theme="light"] .d-title,
@@ -136,7 +132,7 @@
     html[data-theme="light"] .form-field > span, html[data-theme="light"] .s-label, html[data-theme="light"] .search input,
     html[data-theme="light"] .search input::placeholder, html[data-theme="light"] .aside h2, html[data-theme="light"] .contact-row strong,
     html[data-theme="light"] .contact-hl { color: #18181b; }
-    html[data-theme="light"] .feature p, html[data-theme="light"] .card p, html[data-theme="light"] .route-card p,
+    html[data-theme="light"] .feature p, html[data-theme="light"] .card p,
     html[data-theme="light"] .mini-body p, html[data-theme="light"] .meet p, html[data-theme="light"] .quote p,
     html[data-theme="light"] .quote small, html[data-theme="light"] .info-row p, html[data-theme="light"] .step p,
     html[data-theme="light"] .card-icon, html[data-theme="light"] .trip-detail, html[data-theme="light"] .trip-sub,
@@ -149,7 +145,7 @@
     html[data-theme="light"] .aside p, html[data-theme="light"] .bizQuote, html[data-theme="light"] .faq-preview p,
     html[data-theme="light"] .faq-answer { color: var(--ink-soft); }
     html[data-theme="light"] .banner { color: #5c4a1c; border-left-color: #b8933c; }
-    html[data-theme="light"] .route-price, html[data-theme="light"] .car-price, html[data-theme="light"] .data-money,
+    html[data-theme="light"] .car-price, html[data-theme="light"] .data-money,
     html[data-theme="light"] .quote-btn small { color: #8a6a10; }
     html[data-theme="light"] .car-media { background: var(--panel-2); }
     html[data-theme="light"] .car-media::after { background: linear-gradient(to top, rgba(255,255,255,.35), transparent); }
@@ -218,7 +214,8 @@
     html[data-theme="light"] .x, html[data-theme="light"] .dialog-close { background: var(--panel-3); border-color: var(--line); color: var(--ink-soft); }
     html[data-theme="light"] .d-eyebrow { color: #8a7233; }
     html[data-theme="light"] .menu-backdrop { background: rgba(24,24,27,.35); }
-    html[data-theme="light"] .site-nav .nav-link { background: rgba(255,255,255,.9); border-color: var(--line); color: #27272a; }
+    html[data-theme="light"] .site-nav .nav-link { background: transparent; border-color: transparent; color: #27272a; }
+    html[data-theme="light"] .menu-close { color: #27272a; }
     html[data-theme="light"] .burger { background: var(--panel-3); border-color: var(--line); }
     html[data-theme="light"] .burger span { background: #27272a; }
     html[data-theme="light"] .grain { opacity: .014; }
@@ -258,6 +255,9 @@
     .logo em { font-family: "Instrument Serif","Times New Roman",serif; font-style: italic; font-weight: 400; color: var(--accent); letter-spacing: -.02em; }
     .site-nav { display: flex; align-items: center; gap: 27px; justify-self: center; }
     .nav-link { position: relative; display: inline-flex; align-items: center; gap: 7px; min-height: 40px; color: #b3ada2; font-size: 13px; font-weight: 450; letter-spacing: -.01em; white-space: nowrap; transition: color .25s; }
+    .mobile-nav-primary, .mobile-nav-account { display: contents; }
+    .menu-close { align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 8px; color: var(--text); }
+    .menu-close .icon { width: 20px; height: 20px; }
     .nav-link:hover, .nav-link.active { color: #fff; }
     .nav-link.active::before { content: ""; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
     .header-actions { display: flex; align-items: center; justify-self: end; gap: 14px; }
@@ -289,15 +289,13 @@
     .eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px rgba(245,198,107,.5); }
     .hero .eyebrow { margin-bottom: 24px; }
     h1 { font-size: clamp(52px,5.6vw,92px); font-weight: 500; letter-spacing: -.06em; line-height: 1.03; }
+    .hero h1 { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; letter-spacing: -.025em; line-height: .98; }
     .headline-line { display: block; overflow: hidden; padding: .03em .1em .1em; margin: 0 -.1em; }
     .headline-line + .headline-line { margin-top: -.05em; }
     .headline-line > span { display: block; }
     em { font-family: "Instrument Serif","Times New Roman",Times,serif; font-style: italic; font-weight: 400; font-size: 1.1em; letter-spacing: -.04em; color: var(--accent); }
     .hero h1 em { display: inline-block; animation: in-em 1.2s var(--ease) .72s both; }
     .lede { max-width: 430px; margin-top: 20px; color: #aca69a; font-size: 15px; line-height: 1.7; letter-spacing: -.015em; }
-    .hero-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
-    .pill { display: inline-flex; align-items: center; gap: 7px; padding: 8px 13px; border: 1px solid rgba(245,198,107,.3); border-radius: 40px; background: rgba(20,17,10,.6); backdrop-filter: blur(9px); -webkit-backdrop-filter: blur(9px); color: #e6ddc9; font-size: 11.5px; letter-spacing: -.01em; }
-    .pill .icon { width: 14px; height: 14px; color: var(--accent); }
     .booking { margin: 0 var(--gutter); padding: 23px 26px 20px; border: 2px solid rgba(245,198,107,.34); border-radius: 14px; background: rgba(14,12,8,.97); box-shadow: 0 18px 46px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.035); }
     .booking-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
     .mode-switch { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
@@ -452,13 +450,27 @@
     .info-num { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(245,198,107,.28); color: var(--accent); font-size: 11px; letter-spacing: .08em; }
     .info-row h3 { font-size: 16px; font-weight: 520; letter-spacing: -.025em; }
     .info-row p { color: #918a7d; font-size: 12.5px; line-height: 1.75; margin-top: 7px; }
-    .route-board { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; margin-top: 30px; }
-    .route-card { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; min-height: 96px; border: 1px solid var(--line-soft); border-radius: 13px; padding: 18px; background: rgba(17,15,9,.72); transition: border-color .3s, transform .35s var(--ease); }
-    .route-card:hover { border-color: rgba(245,198,107,.4); transform: translateY(-2px); }
-    .route-card h3 { font-size: 16px; font-weight: 520; letter-spacing: -.025em; }
-    .route-card p { color: var(--ink-soft); font-size: 11.5px; line-height: 1.7; margin-top: 6px; }
-    .route-price { color: var(--accent); font-size: 21px; font-weight: 700; letter-spacing: -.04em; white-space: nowrap; }
-    .route-price small { display: block; color: #827a69; font-size: 10px; font-weight: 400; text-align: right; margin-top: 4px; letter-spacing: 0; }
+    .route-tables { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; margin-top: 30px; }
+    .route-table-panel { min-width: 0; padding: 21px 22px 7px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
+    .route-table-panel h3 { margin-bottom: 13px; font-size: 19px; font-weight: 500; letter-spacing: -.025em; }
+    .route-table-scroll { overflow-x: auto; }
+    .route-table { width: 100%; border-collapse: collapse; text-align: left; }
+    .route-table th { padding: 10px 10px 11px 0; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 10px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
+    .route-table td { padding: 13px 10px 13px 0; border-bottom: 1px solid var(--line-soft); vertical-align: middle; }
+    .route-table tr:last-child td { border-bottom: 0; }
+    .route-table th:last-child, .route-table td:last-child { padding-right: 0; text-align: right; }
+    .route-table-choice { display: block; width: 100%; text-align: left; }
+    .route-table-name { display: block; color: var(--text); font-size: 14px; font-weight: 550; letter-spacing: -.02em; transition: color .2s; }
+    .route-table-choice:hover .route-table-name, .route-table-choice:focus-visible .route-table-name { color: var(--accent); }
+    .route-table-choice:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
+    .route-table-desc, .route-table-price small { display: block; margin-top: 4px; color: var(--ink-soft); font-size: 10.5px; line-height: 1.5; }
+    .route-table-price strong { color: var(--accent); font-size: 17px; font-weight: 600; letter-spacing: -.025em; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .route-table-price small { white-space: nowrap; }
+    .long-route-form { margin: 0 0 14px; padding: 13px; border: 1px solid var(--line-soft); border-radius: 10px; background: rgba(245,198,107,.035); }
+    .long-route-fields { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+    .long-route-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 11px; }
+    .long-route-help { max-width: 30ch; color: var(--ink-soft); font-size: 10.5px; line-height: 1.55; }
+    .long-route-submit { min-height: 38px; flex: 0 0 auto; }
     .fleet-strip { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 14px; margin-top: 30px; }
     .mini-car { border: 1px solid var(--line-soft); border-radius: 14px; overflow: hidden; background: #11100b; }
     .mini-car { position: relative; }
@@ -535,6 +547,19 @@
     .card h3 { font-size: 17px; font-weight: 500; letter-spacing: -.03em; }
     .card p { color: #918b7e; font-size: 12.5px; line-height: 1.75; margin-top: 10px; }
     .card .text-link { display: inline-block; margin-top: 15px; font-size: 12px; }
+    .tour-card { display: flex; flex-direction: column; min-height: 250px; }
+    .tour-route { margin-top: 17px; color: var(--card-ink); font-size: 18px; letter-spacing: -.035em; }
+    .tour-route span { color: var(--accent); }
+    .tour-duration { color: var(--accent) !important; }
+    .tour-card .text-link { align-self: flex-start; }
+    .tour-booking { display: grid; grid-template-columns: 1.4fr 1fr 1fr .7fr auto; align-items: end; gap: 14px; margin-top: 32px; padding: 22px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); }
+    .tour-stops { grid-column: 1 / -1; display: grid; gap: 10px; }
+    .tour-stop-row { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 10px; align-items: end; }
+    .tour-stop-row .field { min-height: 44px; }
+    .tour-stops-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .tour-stops-head > span { color: var(--ink-soft); font-size: 12px; }
+    .tour-submit { min-height: 48px; }
+    .tour-message { grid-column: 1 / -1; min-height: 1.4em; color: var(--accent); font-size: 12px; }
     .fleet-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 38px 26px; margin-top: 30px; }
     .car-media { display: block; width: 100%; overflow: hidden; position: relative; background: #16140f; aspect-ratio: 1.75; border-radius: 10px; }
     .car-media img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.66); transition: transform .8s var(--ease),filter .8s; }
@@ -832,7 +857,6 @@
       h1 { font-size: min(70px,11.4vh); }
       .hero .eyebrow { margin-bottom: 17px; }
       .lede { margin-top: 15px; font-size: 13.5px; }
-      .hero-badges { margin-top: 17px; }
       .stats { padding-block: 20px; }
     }
     @media (max-width: 900px) {
@@ -844,10 +868,14 @@
       .burger { display: grid; }
       .menu-backdrop { display: block; position: fixed; inset: 0; z-index: 40; background: rgba(6,6,6,.68); opacity: 0; visibility: hidden; transition: opacity .28s,visibility .28s,backdrop-filter .28s; }
       .menu-open .menu-backdrop { opacity: 1; visibility: visible; backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); }
-      .site-nav { position: fixed; inset: 0; z-index: 45; display: flex; flex-direction: column; align-items: stretch; justify-content: center; gap: 10px; padding: max(94px,calc(env(safe-area-inset-top) + 86px)) 22px 30px; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .28s,visibility .28s; overflow-y: auto; }
-      .menu-open .site-nav { opacity: 1; visibility: visible; pointer-events: auto; }
-      .site-nav .nav-link { justify-content: center; height: 54px; min-height: 54px; border: 1px solid rgba(255,255,255,.16); border-radius: 10px; background: rgba(16,14,10,.85); font-size: 18px; }
+      .site-nav { position: fixed; inset: 0; z-index: 90; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 0; width: 100%; height: 100vh; height: 100dvh; padding: calc(env(safe-area-inset-top) + 14px) max(22px,env(safe-area-inset-right)) calc(env(safe-area-inset-bottom) + 18px) max(22px,env(safe-area-inset-left)); background: var(--panel); opacity: 0; visibility: hidden; pointer-events: none; transform: translateX(100%); transition: transform .3s var(--ease),opacity .22s,visibility .3s; overflow-y: auto; overscroll-behavior: contain; }
+      .menu-open .site-nav { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(0); }
+      .site-nav .nav-link { width: 100%; justify-content: flex-start; height: auto; min-height: 46px; padding: 0 6px; border: 0; border-radius: 0; background: transparent; color: var(--text); font-size: 16px; }
+      .mobile-nav-primary, .mobile-nav-account { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+      .mobile-nav-account { margin-top: auto; padding-top: 34px; }
+      .menu-close { margin-bottom: 10px; }
       .mobile-only { display: inline-flex; }
+      .menu-open .burger { visibility: hidden; }
       .menu-open { overflow: hidden; }
       .hero-photo { height: 640px; }
       .hero-photo img { object-position: 62% center; }
@@ -876,10 +904,15 @@
       .home-section { padding: 46px 0; }
       .feature-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
       .home-split { grid-template-columns: 1fr; gap: 30px; }
-      .route-board { grid-template-columns: 1fr; }
+      .route-tables { grid-template-columns: 1fr; }
+      .long-route-fields { grid-template-columns: 1fr; }
+      .long-route-actions { align-items: stretch; flex-direction: column; }
+      .long-route-submit { width: 100%; justify-content: center; }
       .fleet-strip { grid-template-columns: repeat(2,minmax(0,1fr)); }
       .terminal-grid { grid-template-columns: 1fr; }
       .review-grid { grid-template-columns: 1fr; }
+      .tour-booking { grid-template-columns: 1fr 1fr; }
+      .tour-submit { grid-column: 1 / -1; }
       .contact-grid { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
       .faq-preview { grid-template-columns: 1fr; gap: 0; }
@@ -902,9 +935,9 @@
       h1 { font-size: clamp(38px,12vw,58px); }
       .hero .eyebrow { font-size: 8.5px; letter-spacing: .15em; margin-bottom: 18px; }
       .lede { font-size: 13px; max-width: 300px; margin-top: 16px; }
-      .hero-badges { gap: 6px; }
-      .pill { font-size: 10.5px; padding: 7px 11px; }
       .booking { padding: 18px 15px 16px; }
+      .tour-booking { grid-template-columns: 1fr; padding: 17px; }
+      .tour-submit, .tour-message { grid-column: 1; }
       .booking-head { gap: 13px; }
       .mode-switch { width: 100%; }
       .mode-switch button { flex: 1; justify-content: center; padding: 0 9px; font-size: 11px; }
@@ -924,8 +957,6 @@
       .feature { min-height: auto; }
       .media-caption { align-items: flex-start; flex-direction: column; }
       .home-media, .home-media img { min-height: 300px; }
-      .route-card { grid-template-columns: 1fr; }
-      .route-price small { text-align: left; }
       .app-band { padding: 22px; }
       .subpage { padding-top: 24px; padding-bottom: 52px; }
       .page-heading { font-size: 36px; }
@@ -966,7 +997,7 @@
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900&family=Instrument+Serif:ital@1&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900&family=Instrument+Serif:ital@0;1&display=swap">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -1048,7 +1079,7 @@
       <div class="footer-inner">
         <div class="footer-brand">
           <a class="logo" href="#/" aria-label="Transfer by Van"><span class="logo-mark"><svg class="icon" aria-hidden="true"><use href="#i-van"/></svg></span><span>Transfer by <em>Van</em></span></a>
-          <p class="footer-desc">${''}${L('Osobní přeprava a transfery z/na letiště Václava Havla Praha. Fixní ceny, vícemístné vozy, dětské autosedačky zdarma.', 'Passenger transport and transfers to and from Václav Havel Airport Prague. Fixed prices, multi-seat vehicles and free child seats.')}</p>
+          <p class="footer-desc">Osobní přeprava, transfery a soukromé výlety z Prahy. Fixní ceny, vícemístné vozy, dětské autosedačky zdarma.</p>
         </div>
         <div class="footer-col">
           <h4>${L('Kontakt', 'Contact')}</h4>
@@ -1074,10 +1105,8 @@
   (() => {
     'use strict';
 
-    /* Real online payments require a merchant backend: it must price the ride,
-       create the payment (e.g. YooKassa/Stripe/GoPay) and verify it by webhook.
-       No shop secret may ever live in this file. Empty = demo only. */
-    // Подключаем локальный/боевой серверный эндпоинт обработки платежей
+    /* Payment amounts and Stripe sessions are created and verified server-side.
+       Never put payment-provider secrets in this file. */
     const CONFIG = Object.freeze({ 
       bookingEndpoint: '/api/checkout', 
       statusEndpoint: '/api/order-status',
@@ -1127,6 +1156,12 @@
                  img: 'https://images.pexels.com/photos/17455633/pexels-photo-17455633.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200',
                  inside: 'https://images.pexels.com/photos/17455632/pexels-photo-17455632.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200' }
     };
+    const TOURS = [
+      { id: 'karlovy-vary', to: 'Karlovy Vary', name: { cs: 'Karlovy Vary', en: 'Karlovy Vary' }, title: { cs: 'Karlovy Vary: kolonády a lázeňské město', en: 'Karlovy Vary: colonnades and spa town' }, detail: { cs: 'Celodenní soukromý výlet z Prahy s volným časem v centru Karlových Varů.', en: 'A private day trip from Prague with free time in central Karlovy Vary.' }, duration: 10 },
+      { id: 'dresden', to: 'Drážďany / Dresden', name: { cs: 'Drážďany', en: 'Dresden' }, title: { cs: 'Drážďany: historické centrum', en: 'Dresden: historic city centre' }, detail: { cs: 'Soukromá zpáteční cesta do Saska a čas na prohlídku města.', en: 'A private round trip to Saxony with time to explore the city.' }, duration: 10 },
+      { id: 'cesky-krumlov', to: 'Český Krumlov', name: { cs: 'Český Krumlov', en: 'Český Krumlov' }, title: { cs: 'Český Krumlov: historické centrum', en: 'Český Krumlov: historic town' }, detail: { cs: 'Výlet do jižních Čech s volným časem v historickém centru.', en: 'A trip to South Bohemia with free time in the historic centre.' }, duration: 12 },
+      { id: 'spindleruv-mlyn', to: 'Špindlerův Mlýn', name: { cs: 'Špindlerův Mlýn', en: 'Špindlerův Mlýn' }, title: { cs: 'Krkonoše: Špindlerův Mlýn', en: 'Krkonoše: Špindlerův Mlýn' }, detail: { cs: 'Horský výlet do Krkonoš s časem na vlastní program.', en: 'A mountain trip to the Krkonoše with time to explore at your own pace.' }, duration: 12 }
+    ];
     const GALLERY_LABELS = {
       cs: ['Přední pohled','Boční pohled','Zadní pohled','Přední část interiéru','Zadní sedadla','Sedadla a prostor','Palubní deska','Zavazadlový prostor','Boční dveře','Dětská autosedačka','Detail vozu','Vůz večer'],
       en: ['Front view','Side view','Rear view','Front interior','Rear seats','Seats and space','Dashboard','Luggage space','Side doors','Child seat','Vehicle detail','Vehicle at night']
@@ -1182,7 +1217,7 @@
     /* ---------- i18n ---------- */
     const D = {
       cs: {
-        nav: { services: 'Služby', fleet: 'Vozy a ceny', airport: 'Letiště', business: 'Pro firmy', help: 'Nápověda', trips: 'Moje jízdy' },
+        nav: { services: 'Služby', fleet: 'Vozy a ceny', airport: 'Letiště', business: 'Pro firmy', tours: 'Výlety', help: 'Nápověda', trips: 'Moje jízdy' },
         hero: { eyebrow: 'Praha · Letiště Václava Havla (PRG) · nonstop 24/7', l1: 'Taxi na letiště', l2a: 'Bez ', l2em: 'stresu', lede: 'Fixní cenu znáte předem. Řidič sleduje váš let, čeká s cedulkou a jeho auto vidíte na mapě. Platíte až po jízdě.', p1: 'Letiště – Praha od 690 Kč', p2: 'Autosedačka zdarma', p3: 'Sledujeme váš let', p4: 'Platba u řidiče', p5: 'Živá poloha auta' },
         modes: { to: 'Na letiště', from: 'Z letiště', long: 'Jiná trasa', hourly: 'Hodinová dispozice' },
         f: { from: 'Odkud', to: 'Kam', when: 'Datum a čas (SEČ)', pax: 'Osoby', car: 'Vůz', hours: 'Počet hodin', cta: 'Vybrat vůz', promo: 'Máte slevový kód?', fixed: 'Fixní cena. Bez skrytých poplatků.', est: 'Orientační cena – potvrdí dispečer.', hourNote: 'Hodinová sazba, minimálně 2 hodiny.', demo: 'Cena dle ceníku Transfer by Van · potvrdí dispečink', ret: 'Zpáteční jízda', retNote: 'Účtuje se cena za každý směr.', quick: 'Oblíbené trasy:' },
@@ -1190,11 +1225,11 @@
         pax: n => n === 1 ? '1 osoba' : n < 5 ? `${n} osoby` : `${n} osob`,
         hrs: n => n === 1 ? '1 hodina' : n < 5 ? `${n} hodiny` : `${n} hodin`,
         stages: ['Odesláno – zpracování', 'Potvrzeno dispečerem', 'Řidič přidělen', 'Řidič na cestě', 'Řidič na místě', 'Jízda probíhá', 'Dokončeno'],
-        pay: { cash: 'Hotově u řidiče', card: 'Kartou u řidiče', online: 'Online kartou předem', cashS: 'Zaplatíte po jízdě, doklad od řidiče.', cardS: 'Terminál ve voze, doklad od řidiče.', onlineS: 'Vyžaduje připojenou platební bránu.' },
+        pay: { cash: 'Hotově u řidiče', card: 'Kartou u řidiče', online: 'Online kartou přes Stripe', cashS: 'Zaplatíte po jízdě, doklad od řidiče.', cardS: 'Terminál ve voze, doklad od řidiče.', onlineS: 'Bezpečná platba předem na stránce Stripe.' },
         back: 'Zpět na hlavní stranu', more: 'Více'
       },
       en: {
-        nav: { services: 'Services', fleet: 'Fleet & prices', airport: 'Airport', business: 'Business', help: 'Help', trips: 'My rides' },
+        nav: { services: 'Services', fleet: 'Fleet & prices', airport: 'Airport', business: 'Business', tours: 'Tours', help: 'Help', trips: 'My rides' },
         hero: { eyebrow: 'Prague · Václav Havel Airport (PRG) · 24/7', l1: 'Airport taxi', l2a: 'Zero ', l2em: 'stress', lede: 'A fixed price upfront. Your driver tracks the flight, waits with a name sign and you can watch the car on a live map. Pay after the ride.', p1: 'Airport – Prague from 690 CZK', p2: 'Free child seat', p3: 'Flight tracking', p4: 'Pay the driver', p5: 'Live car position' },
         modes: { to: 'To airport', from: 'From airport', long: 'Other route', hourly: 'Hourly hire' },
         f: { from: 'From', to: 'To', when: 'Date and time (CET)', pax: 'People', car: 'Vehicle', hours: 'Hours', cta: 'Choose vehicle', promo: 'Have a promo code?', fixed: 'Fixed price. No hidden fees.', est: 'Estimate – confirmed by the dispatcher.', hourNote: 'Hourly rate, minimum 2 hours.', demo: 'Priced from the Transfer by Van rate list · confirmed by the backend', ret: 'Return ride', retNote: 'Each direction is charged separately.', quick: 'Popular routes:' },
@@ -1202,7 +1237,7 @@
         pax: n => n === 1 ? '1 person' : `${n} people`,
         hrs: n => n === 1 ? '1 hour' : `${n} hours`,
         stages: ['Sent – processing', 'Confirmed by dispatcher', 'Driver assigned', 'Driver on the way', 'Driver at pickup', 'Ride in progress', 'Completed'],
-        pay: { cash: 'Cash to the driver', card: 'Card to the driver', online: 'Card online in advance', cashS: 'Pay after the ride, receipt from the driver.', cardS: 'Terminal in the car, receipt from the driver.', onlineS: 'Requires a connected payment gateway.' },
+        pay: { cash: 'Cash to the driver', card: 'Card to the driver', online: 'Online card via Stripe', cashS: 'Pay after the ride, receipt from the driver.', cardS: 'Terminal in the car, receipt from the driver.', onlineS: 'Secure advance payment on Stripe.' },
         back: 'Back to home', more: 'More'
       }
     };
@@ -1213,7 +1248,7 @@
       { q: { cs: 'Mám zpoždění letu, počká řidič?', en: 'My flight is delayed, will the driver wait?' }, a: { cs: 'Ano. Uveďte číslo letu, například LH1400. Řidič sleduje skutečný čas přistání a při zpoždění čeká zdarma. Pokud nakonec nenastoupíte, dejte vědět. Reálná data o letu dodává napojení na letecký API na serveru; v rozhraní si můžeš posun zkontrolovat na tlačítku „Simulovat zpoždění“ v detailu jízdy.', en: 'Yes. Enter the flight number, e.g. LH1400. The driver follows the real landing time and waits free of charge if it is delayed. Tell us if you do not board. Live flight data comes from a flight-data API on the server; you can check the shift with the “Simulate delay” button in the ride detail.' }, k: 'let zpoždění flight delay číslo letu' },
       { q: { cs: 'Kde se potkám s řidičem na letišti?', en: 'Where do I meet the driver at the airport?' }, a: { cs: 'Po přistání si zapněte telefon, řidič vás kontaktuje telefonicky nebo přes WhatsApp. Terminál 1: příletová hala před Mattoni Barem. Terminál 2: před Visitor Centrem. Praha hlavní nádraží: uvnitř haly před Burger Kingem. Řidič drží cedulku se jménem a pomůže se zavazadly.', en: 'Turn your phone on after landing; the driver will contact you by phone or WhatsApp. Terminal 1: arrivals hall in front of the Mattoni Bar. Terminal 2: in front of the Visitor Centre. Prague main station: inside the hall in front of Burger King. The driver holds a name sign and helps with the luggage.' }, k: 'letiště terminál meeting cedulka pickup' },
       { q: { cs: 'Jak zruším rezervaci?', en: 'How do I cancel a booking?' }, a: { cs: 'Bezplatně nejpozději 2 hodiny před jízdou. U vozů Mercedes E a Mercedes V nebo u jízd začínajících více než 50 km od Prahy je lhůta 12 hodin. Storno řešte telefonicky nebo v administraci rezervací.', en: 'Free of charge at least 2 hours before the ride. For Mercedes E and Mercedes V, or rides starting more than 50 km from Prague, the limit is 12 hours. Cancel by phone or in the booking administration.' }, k: 'storno zrušit cancel refund' },
-      { q: { cs: 'Jak se platí?', en: 'How do I pay?' }, a: { cs: 'Neplatíte nic předem. Po jízdě zaplatíte řidiči hotově nebo kartou a dostanete daňový doklad. Online platba kartou běží přes platební bránu na serveru – číslo karty se tady nezadává vůbec, platí se vždy na stránce banky.', en: 'You pay nothing upfront. After the ride you pay the driver in cash or by card and get a tax receipt. Online card payment runs through the gateway on the server – no card number is ever entered here, it is always typed on the bank page.' }, k: 'platba payment karta hotově doklad' },
+      { q: { cs: 'Jak se platí?', en: 'How do I pay?' }, a: { cs: 'Při rezervaci zvolíte hotovost nebo kartu u řidiče po jízdě, případně online kartou přes Stripe předem. Číslo karty se na tomto webu nezadává; bezpečná platba proběhne na stránce Stripe. Doklad dostanete podle zvoleného způsobu platby.', en: 'Choose cash or card with the driver after the ride, or pay online in advance through Stripe. Card numbers are never entered on this website; secure payment takes place on Stripe. Your receipt depends on the selected payment method.' }, k: 'platba payment karta hotově doklad stripe' },
       { q: { cs: 'Vozíte i mimo Prahu?', en: 'Do you drive outside Prague?' }, a: { cs: 'Ano, dálkové jízdy po celé ČR i do zahraničí, například Vídeň, Mnichov, Berlín nebo Drážďany, včetně zastávek po cestě. Cenu pro tyto trasy potvrzuje dispečer, kalkulace zde je orientační.', en: 'Yes, long-distance rides across Czechia and abroad, for example Vienna, Munich, Berlin or Dresden, including stops on the way. The dispatcher confirms the price for these routes; the calculation here is indicative.' }, k: 'dálková intercity vídeň mnichov europe' },
       { q: { cs: 'Co s velkými zavazadly?', en: 'What about oversized luggage?' }, a: { cs: 'Sedan pojme 3 zavazadla, Mercedes E dvě, minibus a Mercedes V až sedm. Kočárek, lyže nebo kolo napište do poznámky, kalkulačka vás upozorní, pokud objem přesáhne kapacitu vozu.', en: 'The sedan takes 3 bags, Mercedes E two, the minibus and Mercedes V up to seven. Note a pram, skis or a bike in the comments; the calculator warns you when the volume exceeds the vehicle capacity.' }, k: 'zavazadla luggage kufr kočárek lyže' },
       { q: { cs: 'Kde jsou moje data?', en: 'Where is my data stored?' }, a: { cs: 'Prohlížeč si drží historii jízd v localStorage, takže se neztratí po refreshi. Není to účet se synchronizací mezi zařízeními. Celé telefonní číslo a e-mail se neukládají, jen poslední čtyři číslice. Historii smažeš kdykoli v sekci Moje jízdy.', en: 'The browser keeps your ride history in localStorage so it survives a reload. It is not an account and does not sync between devices. Only the last four digits of the phone number are stored, never the full number or e-mail. You can delete the history any time in My rides.' }, k: 'data soukromí privacy localStorage' }
@@ -1231,9 +1266,16 @@
     const S = {
       mode: 'from', from: AIRPORT, to: 'Praha – centrum', date: plusDays(1), time: '12:00', pax: 2, car: 'sedan',
       hours: 3, roundtrip: false, retDate: plusDays(2), retTime: '12:00',
-      fromGeo: null, toGeo: null, stopoverGeo: null, stopover: '',
+      fromGeo: null, toGeo: null, stopoverGeo: null, stopover: '', tourStops: [],
+      tourId: '',
       flight: '', meet: 't1', sign: '', seatType: 'mid', seats: 0, bagsBig: 1, bagsSmall: 1, pram: false,
       notes: '', promo: '', discount: 0, name: '', phone: '', email: '', pay: 'cash', consent: false
+    };
+    let longRouteDraft = { from: PLACES.find(p => p.g === 'prg-city')?.n || '', to: '', fromGeo: null, toGeo: null };
+    const addressContext = which => {
+      const long = /^long-(from|to)$/.test(which || '');
+      const key = long ? which.slice(5) : which;
+      return { key, state: long ? longRouteDraft : S, long };
     };
     let path = '/', fleetFilter = 'all', tripFilter = 'all', kind = '', step = 1, gCar = 'sedan', gIdx = 0;
     let revId = '', rating = 5, lastFocus = null, busy = false, navCount = 0, checkoutKey = null;
@@ -1243,6 +1285,19 @@
     /* Public settings from the backend (driver contacts, flight data, etc.) */
     const PUB = { whatsapp: null, phone: null, supportEmail: null, flightProvider: null, loaded: false };
     fetch(CONFIG.configEndpoint).then(r => r.ok ? r.json() : null).then(d => { if (d) { Object.assign(PUB, d, { loaded: true }); if (path === '/nastaveni') renderSetup(); } }).catch(() => {});
+    async function loadPublicConfig() {
+      if (PUB.loaded) return true;
+      try {
+        const response = await fetch(CONFIG.configEndpoint, { cache: 'no-store', signal: AbortSignal.timeout(8000) });
+        if (!response.ok) throw new Error('Configuration unavailable.');
+        const data = await response.json();
+        if (!data || typeof data !== 'object') throw new Error('Invalid public configuration.');
+        Object.assign(PUB, data, { loaded: true });
+        return true;
+      } catch {
+        return false;
+      }
+    }
 
     /* Serverový výpočet trasy: skutečné kilometry po silnici + cena za každý vůz.
        Klíč hlídá, že zobrazená cena patří k právě zadané adrese. */
@@ -1255,7 +1310,7 @@
       return 12742 * Math.asin(Math.sqrt(s));
     };
     const fmtKm = v => `${v.toFixed(1).replace('.', lang === 'cs' ? ',' : '.')} km`;
-    const quoteKey = b => JSON.stringify([b.mode, b.from, b.to, b.hours, !!b.roundtrip, b.promo || '', b.stopover || '', ...['from','to','stopover'].map(k => { const p = selectedPoint(b, k); return p ? [p.id, p.label, p.address, p.full, p.lat, p.lng] : null; })]);
+    const quoteKey = b => JSON.stringify([b.mode, b.from, b.to, b.hours, b.car, !!b.roundtrip, b.promo || '', b.stopover || '', b.tourId || '', ...['from','to','stopover'].map(k => { const p = selectedPoint(b, k); return p ? [p.id, p.label, p.address, p.full, p.lat, p.lng] : null; }), (b.tourStops || []).map(stop => stop?.geo && stop.geo.label === stop.label ? [stop.geo.id, stop.label, stop.geo.address, stop.geo.full, stop.geo.lat, stop.geo.lng] : [stop?.label || '', null])]);
     let Q = { key: '', kind: '', km: null, min: null, prices: null, from: null, to: null, state: 'idle' };
     let quoteTimer = null, acTimer = null, acSeq = 0, acController = null, quoteController = null;
 
@@ -1285,14 +1340,16 @@
         return snapshotPlace(matching ? geo : null, raw);
       };
       const mode = o.ext?.mode || o.mode;
-      return { pickup: get('pickup', 'from'), destination: mode === 'hourly' ? null : get('destination', 'to'), stopover: saved.stopover?.label || o.ext?.stopover || o.stopover ? get('stopover', 'stopover') : null };
+      const stopovers = Array.isArray(saved.stopovers) ? saved.stopovers : Array.isArray(o.ext?.tourStops) ? o.ext.tourStops : [];
+      return { pickup: get('pickup', 'from'), destination: mode === 'hourly' ? null : get('destination', 'to'), stopover: saved.stopover?.label || o.ext?.stopover || o.stopover ? get('stopover', 'stopover') : null, stopovers: stopovers.map(point => snapshotPlace(point, point?.label)).filter(point => point.label) };
     }
     function draftPlaces() {
       const quoted = Q.state === 'ok' && Q.key === quoteKey(S);
       return {
         pickup: snapshotPlace(quoted ? Q.from : selectedPoint(S, 'from'), S.from),
         destination: S.mode === 'hourly' ? null : snapshotPlace(quoted ? Q.to : selectedPoint(S, 'to'), S.to),
-        stopover: S.stopover ? snapshotPlace(quoted ? Q.stopover : selectedPoint(S, 'stopover'), S.stopover) : null
+        stopover: S.stopover ? snapshotPlace(quoted ? Q.stopover : selectedPoint(S, 'stopover'), S.stopover) : null,
+        stopovers: (quoted ? Q.stopovers : S.tourStops.map(stop => stop.geo && stop.geo.label === stop.label ? stop.geo : null)).filter(Boolean).map(point => snapshotPlace(point, point.label))
       };
     }
     function placeMarkup(p, caption = '') {
@@ -1300,7 +1357,9 @@
       return `<span class="location-block">${caption ? `<span class="location-caption">${esc(caption)}</span>` : ''}<strong class="location-label">${esc(point.label || L('Místo neuvedeno', 'Location not recorded'))}</strong>${point.address ? `<span class="location-address">${esc(point.address)}</span>` : ''}</span>`;
     }
     function itineraryMarkup(locations, mode = '', hours = 0) {
-      return `${placeMarkup(locations.pickup)}<span class="arw" aria-hidden="true">→</span>${locations.destination ? placeMarkup(locations.destination) : `<span class="location-block"><strong class="location-label">${L('Hodinová dispozice', 'Hourly hire')}</strong><span class="location-address">${Number(hours) || 0} h</span></span>`}`;
+      const points = [locations.pickup, ...(locations.stopovers || []), ...(locations.stopover ? [locations.stopover] : []), locations.destination || null];
+      if (!locations.destination) points[points.length - 1] = null;
+      return points.map((point, i) => `${i ? '<span class="arw" aria-hidden="true">→</span>' : ''}${point ? placeMarkup(point) : `<span class="location-block"><strong class="location-label">${L('Hodinová dispozice', 'Hourly hire')}</strong><span class="location-address">${Number(hours) || 0} h</span></span>`}`).join('');
     }
     function snapshotMatchesBooking(p, field, booking) {
       const selected = selectedPoint(booking, field) || place(booking[field]);
@@ -1357,7 +1416,7 @@
       if (Q.state === 'ok' && Q.expiresAt > Date.now() && Q.prices && Q.prices[b.car] && Q.key === quoteKey(b)) {
         const p = Q.prices[b.car];
         return {
-          base: p.base, ret: b.roundtrip && b.mode !== 'hourly' ? p.base : 0,
+          base: p.base, ret: b.roundtrip && b.mode !== 'hourly' ? (p.returnBase ?? p.base) : 0,
           disc: p.discount, total: p.total,
           kind: Q.kind === 'hourly' ? 'hour' : Q.kind, km: Q.km, min: Q.min, live: true
         };
@@ -1388,11 +1447,10 @@
 
     /* ---------- shell ---------- */
     function shellChrome() {
-      $('#nav').innerHTML = [
-        ['services', '#/sluzby'], ['fleet', '#/vozy'], ['airport', '#/letiste'], ['business', '#/firmy']
-      ].map(([k, href], i) => `<a class="nav-link appear ${i % 2 ? 'a-soft' : 'a-scale'}" href="${href}" data-p="${k}" style="--d:${.16 + i * .12}s">${t('nav.' + k)}</a>`).join('')
-        + `<a class="nav-link mobile-only" href="#/napoveda" data-p="help">${t('nav.help')}</a>`
-        + `<a class="nav-link mobile-only" href="#/jizdy" data-p="trips">${t('nav.trips')}</a>`;
+      const primaryLinks = [['services', '#/sluzby'], ['fleet', '#/vozy'], ['airport', '#/letiste'], ['business', '#/firmy'], ['tours', '#/tury']];
+      const accountLinks = [['help', '#/napoveda'], ['trips', '#/jizdy']];
+      const renderLinks = (items, mobileOnly = false) => items.map(([key, href], i) => `<a class="nav-link appear ${i % 2 ? 'a-soft' : 'a-scale'}${mobileOnly ? ' mobile-only' : ''}" href="${href}" data-p="${key}" style="--d:${.16 + i * .12}s">${t('nav.' + key)}</a>`).join('');
+      $('#nav').innerHTML = `<button class="menu-close mobile-only" type="button" data-a="menu-close" aria-label="${L('Zavřít menu', 'Close menu')}"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button><div class="mobile-nav-primary">${renderLinks(primaryLinks)}</div><div class="mobile-nav-account">${renderLinks(accountLinks, true)}</div>`;
       $('#langs').innerHTML = ['cs', 'en'].map(l => `<button type="button" data-a="lang" data-v="${l}" aria-pressed="${l === lang}">${l.toUpperCase()}</button>`).join('');
       $('#cta-label').textContent = t('nav.trips');
       $('#places').innerHTML = PLACES.map(p => `<option value="${esc(p.n)}">`).join('');
@@ -1424,11 +1482,37 @@
         ['headset', L('Nonstop provoz 24/7', '24/7 service'), L('Letíte brzy ráno, přistáváte v noci nebo jedete mimo Prahu? Transfer objednáte kdykoli.', 'Flying early, landing late or travelling outside Prague? Book anytime.')]
       ];
       const routeDeals = [
-        ['PRG → Praha centrum', L('Fixní cena letištního transferu', 'Fixed airport transfer price'), FLEET.sedan.base, 't1'],
-        ['Praha → PRG', L('Včasný odvoz na odlet', 'On-time departure pickup'), FLEET.sedan.base, 't2'],
-        ['PRG → Karlovy Vary', L('Dálková jízda bez přestupů', 'Long-distance ride with no transfers'), Math.round((130 * FLEET.sedan.rate + FLEET.sedan.base * .4) / 10) * 10, 't3'],
-        ['Praha → Vídeň', L('Soukromý transfer do Rakouska', 'Private transfer to Austria'), Math.round((335 * FLEET.sedan.rate + FLEET.sedan.base * .4) / 10) * 10, 't4']
+        {
+          title: L('Letiště Praha ↔ centrum', 'Prague Airport ↔ city centre'),
+          items: [
+            { name: L('PRG → Praha centrum', 'PRG → Prague city centre'), description: L('Fixní cena letištního transferu', 'Fixed airport transfer price'), price: FLEET.sedan.base, preset: 't1', fare: L('pevná cena', 'fixed fare') },
+            { name: L('Praha centrum → PRG', 'Prague city centre → PRG'), description: L('Včasný odvoz na odlet', 'On-time departure pickup'), price: FLEET.sedan.base, preset: 't2', fare: L('pevná cena', 'fixed fare') }
+          ]
+        },
+        {
+          title: L('Dálkové trasy', 'Long-distance rides'),
+          items: [
+            { name: 'PRG → Karlovy Vary', description: L('Dálková jízda bez přestupů', 'Long-distance ride with no transfers'), price: Math.round((130 * FLEET.sedan.rate + FLEET.sedan.base * .4) / 10) * 10, preset: 't3', fare: L('orientační cena', 'estimated fare') },
+            { name: L('Praha → Vídeň', 'Prague → Vienna'), description: L('Soukromý transfer do Rakouska', 'Private transfer to Austria'), price: Math.round((335 * FLEET.sedan.rate + FLEET.sedan.base * .4) / 10) * 10, preset: 't4', fare: L('orientační cena', 'estimated fare') }
+          ]
+        }
       ];
+      const renderRouteTable = ({ title, items }) => `
+        <article class="route-table-panel">
+          <h3>${title}</h3>
+          ${items.some(item => item.preset === 't3') ? `<form id="long-route-form" class="long-route-form">
+            <div class="long-route-fields">${addressField('long-from', f.from, longRouteDraft.from, 'long-route-field')}${addressField('long-to', f.to, longRouteDraft.to, 'long-route-field')}</div>
+            <div class="long-route-actions"><p class="long-route-help">${L('Zadejte místo odjezdu a cíl. Přesnou trasu a orientační cenu uvidíte v kalkulaci.', 'Choose your pickup and destination. The main calculator will show the route distance and estimated fare.')}</p><button class="btn btn-solid btn-small long-route-submit" type="submit">${L('Spočítat trasu', 'Calculate route')} ${icon('arrow')}</button></div>
+          </form>` : ''}
+          <div class="route-table-scroll"><table class="route-table">
+            <caption class="sr-only">${title}</caption>
+            <thead><tr><th scope="col">${L('Trasa', 'Route')}</th><th scope="col">${L('Cena sedanu', 'Sedan fare')}</th></tr></thead>
+            <tbody>${items.map(item => `<tr>
+              <td><button class="route-table-choice" type="button" data-a="quick" data-v="${item.preset}"><span class="route-table-name">${item.name}</span><span class="route-table-desc">${item.description}</span></button></td>
+              <td class="route-table-price"><strong>${money(item.price)}</strong><small>${item.fare}</small></td>
+            </tr>`).join('')}</tbody>
+          </table></div>
+        </article>`;
       const process = [
         [L('Vyplníte trasu', 'Enter the route'), L('Zvolíte směr, čas, počet osob a vůz. Cena se přepočítá okamžitě.', 'Choose direction, time, people and car. The price updates instantly.')],
         [L('Doplníte detaily', 'Add details'), L('Let, místo setkání, dětské sedačky, zavazadla a poznámka pro řidiče.', 'Flight, meeting point, child seats, luggage and a driver note.')],
@@ -1442,11 +1526,6 @@
           <p class="eyebrow appear a-pop" style="--d:.2s"><span class="eyebrow-dot"></span>${h.eyebrow}</p>
           <h1><span class="headline-line"><span class="appear a-mask" style="--d:.4s">${h.l1}</span></span><span class="headline-line"><span class="appear a-mask" style="--d:.6s">${h.l2a}<em>${h.l2em}</em></span></span></h1>
           <p class="lede appear a-soft" style="--d:.8s;animation-duration:1.2s">${h.lede}</p>
-          <div class="hero-badges appear a-soft" style="--d:.92s">
-            <span class="pill">${icon('shield')}${h.p1}</span><span class="pill">${icon('navigation')}${h.p5}</span>
-            <span class="pill">${icon('seat')}${h.p2}</span><span class="pill">${icon('landing')}${h.p3}</span>
-            <span class="pill">${icon('card')}${h.p4}</span>
-          </div>
         </div>
       </section>
       <section class="booking appear a-soft" style="--d:1s" aria-label="${f.cta}">
@@ -1508,10 +1587,9 @@
         </section>
 
         <section class="home-section">
-          <p class="section-kicker">${L('Oblíbené trasy', 'Popular routes')}</p>
-          <h2 class="home-title">${L('Ceny, které dávají smysl i před dlouhou cestou.', 'Prices that make sense even before a long ride.')}</h2>
-          <p class="home-lede">${L('Letiště Praha ↔ centrum má fixní cenu. Dálkové trasy počítáme podle kilometrů a třídy vozu, finální cenu potvrzuje dispečer.', 'Prague Airport ↔ city centre has a fixed price. Long-distance routes are calculated by kilometres and vehicle class; final price is confirmed by dispatch.')}</p>
-          <div class="route-board">${routeDeals.map(([name, desc, price, preset]) => `<button class="route-card" type="button" data-a="quick" data-v="${preset}"><div><h3>${name}</h3><p>${desc}</p></div><span class="route-price">${money(price)}<small>${preset === 't3' || preset === 't4' ? L('odhad sedan', 'sedan estimate') : L('fixní cena', 'fixed price')}</small></span></button>`).join('')}</div>
+          <h2 class="home-title">${L('Letiště Praha i dálkové trasy. Každá s vlastní cenou.', 'Prague Airport and long-distance rides, clearly separated.')}</h2>
+          <p class="home-lede">${L('Transfer mezi letištěm Praha a centrem má pevnou cenu. U dálkových tras je cena orientační podle kilometrů a třídy vozu; konečnou cenu potvrzuje dispečer.', 'Prague Airport ↔ city centre has a fixed fare. Long-distance estimates depend on mileage and vehicle class, with the final price confirmed by dispatch.')}</p>
+          <div class="route-tables">${routeDeals.map(renderRouteTable).join('')}</div>
         </section>
 
         <section class="home-section">
@@ -1603,7 +1681,7 @@
         q.kind === 'fixed' ? t('f.fixed')
         : q.kind === 'hour' ? t('f.hourNote')
         : q.kind === 'metered' ? (S.car === 'minibus'
-          ? L('Degresivní sazba: 54 Kč/km do 50 km, 50 Kč/km 50–100 km, 43 Kč/km nad 100 km.', 'Degressive rate: 54 CZK/km up to 50 km, 50 CZK/km 50–100 km, 43 CZK/km over 100 km.')
+          ? L('Sazba za celou trasu: do 50 km 54 Kč/km, 51–99 km 50 Kč/km, od 100 km 43 Kč/km.', 'Whole-route rate: up to 50 km 54 CZK/km, 51–99 km 50 CZK/km, from 100 km 43 CZK/km.')
           : L(`Sazba ${FLEET[S.car].rate} Kč/km podle skutečné trasy.`, `${FLEET[S.car].rate} CZK/km based on the real route.`))
         : t('f.est');
       $$('#car option').forEach(o => {
@@ -1650,13 +1728,13 @@
       syncHome();
     }
     function quotePayload() {
-      return { mode: S.mode, from: S.from, to: S.to, fromGeo: selectedPoint(S, 'from'), toGeo: selectedPoint(S, 'to'), stopover: S.stopover || '', stopoverGeo: selectedPoint(S, 'stopover'), hours: S.hours, roundtrip: S.roundtrip, promo: S.promo };
+      return { mode: S.mode, from: S.from, to: S.to, fromGeo: selectedPoint(S, 'from'), toGeo: selectedPoint(S, 'to'), stopover: S.stopover || '', stopoverGeo: selectedPoint(S, 'stopover'), tourStops: (S.tourStops || []).map(stop => stop?.geo && stop.geo.label === stop.label ? stop.geo : null), hours: S.hours, car: S.car, roundtrip: S.roundtrip, promo: S.promo, tourId: S.tourId, pay: S.pay };
     }
     async function requestQuote() {
       const key = quoteKey(S);
       if (Q.key === key && Q.state === 'ok' && Q.expiresAt > Date.now()) { syncHome(); return true; }
       const chosen = which => selectedPoint(S, which) || place(S[which]);
-      if (!chosen('from') || (S.mode !== 'hourly' && !chosen('to')) || (S.stopover && !selectedPoint(S, 'stopover'))) {
+      if (!chosen('from') || (S.mode !== 'hourly' && !chosen('to')) || (S.stopover && !selectedPoint(S, 'stopover')) || (S.tourStops || []).some(stop => !stop?.geo || stop.geo.label !== stop.label)) {
         invalidateQuote();
         return false;
       }
@@ -1701,22 +1779,34 @@
     function chooseAddress(which, index) {
       const box = $(`#ac-${which}`), input = $(`#${which}`);
       const item = box?._results?.[index];
-      if (!input || !item || !['from', 'to', 'stopover'].includes(which) || !validGeo(item)) return;
+      const tourStopMatch = /^tour-stop-(\d+)$/.exec(which || '');
+      const { key, state, long } = addressContext(which);
+      const allowed = long ? ['from', 'to'].includes(key) : ['from', 'to', 'stopover'].includes(which);
+      if (!input || !item || (!allowed && !tourStopMatch) || !validGeo(item)) return;
+      if (tourStopMatch) {
+        const stop = S.tourStops[Number(tourStopMatch[1])];
+        if (!stop) return;
+        input.value = item.label; input.title = item.full;
+        stop.label = item.label; stop.geo = item;
+        closeAC(); invalidateQuote(); input.focus({ preventScroll: true });
+        return;
+      }
       input.value = item.label; input.title = item.full;
-      S[which] = item.label; S[which + 'Geo'] = item;
-      if (S.mode !== 'hourly' && which !== 'stopover') {
+      state[key] = item.label; state[key + 'Geo'] = item;
+      if (!long && S.mode !== 'hourly' && which !== 'stopover') {
         const airport = k => place(S[k])?.g === 'prg' || (selectedPoint(S, k)?.kind !== 'hotel' && /airport|letiště|\(prg\)/i.test(S[k]));
         S.mode = airport('from') ? 'from' : airport('to') ? 'to' : 'long';
       }
-      if (which === 'from' && pickupType(item) === 'station') S.meet = 'hn';
-      else if (which === 'from' && pickupType(item) === 'airport' && !['t1','t2'].includes(S.meet)) S.meet = 't1';
-      closeAC(); invalidateQuote();
-      requestQuote();
+      if (!long && which === 'from' && pickupType(item) === 'station') S.meet = 'hn';
+      else if (!long && which === 'from' && pickupType(item) === 'airport' && !['t1','t2'].includes(S.meet)) S.meet = 't1';
+      closeAC();
+      if (!long) { invalidateQuote(); requestQuote(); }
       input.focus({ preventScroll: true });
     }
     async function runAC(input) {
       if (!input?.isConnected || document.activeElement !== input) return;
       const which = input.dataset.ac;
+      const { key, state } = addressContext(which);
       const box = $(`#ac-${which}`);
       if (!box) return;
       const term = input.value.trim();
@@ -1732,8 +1822,8 @@
       box.closest('.field')?.classList.add('ac-open');
       input.setAttribute('aria-expanded', 'true');
       let results = [], warning = '', provider = null;
-      const oppWhich = which === 'from' ? 'to' : which === 'to' ? 'from' : null;
-      const opp = oppWhich ? (selectedPoint(S, oppWhich) || place(S[oppWhich])) : null;
+      const oppWhich = key === 'from' ? 'to' : key === 'to' ? 'from' : null;
+      const opp = oppWhich ? (selectedPoint(state, oppWhich) || place(state[oppWhich])) : null;
       try {
         const url = new URL(CONFIG.geocodeEndpoint, location.href);
         url.searchParams.set('q', term); url.searchParams.set('lang', lang);
@@ -1759,7 +1849,7 @@
       box.innerHTML = results.map((x, i) => {
         const serverKm = Number.isFinite(x.distanceKm) ? x.distanceKm : null;
         const localKm = serverKm ?? (validGeo(opp) ? airKm(opp, x) : null);
-        const showKm = validGeo(opp) && Number.isFinite(localKm) && localKm >= 0.1 && oppWhich && S[oppWhich];
+        const showKm = validGeo(opp) && Number.isFinite(localKm) && localKm >= 0.1 && oppWhich && state[oppWhich];
         const addr = x.address && x.address !== x.label ? x.address : x.full;
         return `<button type="button" role="option" aria-selected="false" tabindex="-1" id="option-${which}-${i}" data-pick="${which}" data-i="${i}" title="${esc(x.full)}">${icon(x.kind === 'hotel' ? 'building' : 'pin')}<span><b>${matchText(x.label, term)}</b><small>${esc(addr)}${showKm ? `<span style="color:var(--accent)"> · ≈ ${esc(fmtKm(localKm))} ${L('vzdušně', 'straight line')}</span>` : ''}</small></span></button>`;
       }).join('') + `<div class="ac-meta" role="presentation">${provider === 'geoapify' ? '<a href="https://www.geoapify.com/" target="_blank" rel="noopener">Geoapify</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>' : L('Body Wayro', 'Wayro locations')}${warningText ? `<br>${warningText}` : ''}<br>${L('Přesné km po silnici ukážeme po výběru obou míst.', 'Exact road km appear after you pick both places.')}</div>`;
@@ -1830,9 +1920,60 @@
           [L('Objednávka', 'Booking'), L('Zadáte trasu, čas a vůz. Cenu vidíte hned, bez závazku.', 'Enter route, time and vehicle. You see the price instantly, with no commitment.')],
           [L('Potvrzení', 'Confirmation'), L('Dispečer rezervaci zkontroluje a potvrdí e-mailem. Teprve tím je vůz rezervovaný.', 'The dispatcher checks the booking and confirms by e-mail. Only then is the car reserved.')],
           [L('Příjezd řidiče', 'Driver arrives'), L('Řidič přijede včas, na letišti čeká s cedulkou a pomůže se zavazadly.', 'The driver arrives on time, waits with a name sign at the airport and helps with the luggage.')],
-          [L('Platba', 'Payment'), L('Zaplatíte po jízdě hotově nebo kartou u řidiče a dostanete doklad.', 'You pay after the ride in cash or by card and receive a receipt.')]
+          [L('Platba', 'Payment'), L('Zaplatíte způsobem zvoleným při rezervaci – hotově nebo kartou u řidiče, případně předem přes Stripe.', 'Pay using the method selected at booking: cash or card to the driver, or online in advance through Stripe.')]
         ].map(([ttl, txt], i) => `<div class="step"><span class="step-num">0${i + 1}</span><h3>${ttl}</h3><p>${txt}</p></div>`).join('')}</div>`
         + `<div class="banner">${icon('info')}<p>${L('Ceny letiště – Praha odpovídají ceníku Wayro a jsou pevné. Dálkové a hodinové kalkulace jsou orientační, finální cenu potvrzuje dispečink.', 'Airport – Prague prices follow the Wayro price list and are fixed. Long-distance and hourly calculations are estimates; dispatch confirms the final price.')}</p></div></section>`;
+    }
+    function tourStopsMarkup() {
+      const rows = S.tourStops.map((stop, i) => `<div class="tour-stop-row"><label class="field"><span class="sr-only">${L('Místo', 'Place')} ${i + 1}</span><input class="input" id="tour-stop-${i}" data-ac="tour-stop-${i}" value="${esc(stop.label)}" placeholder="${L('Vyhledejte místo nebo zastávku', 'Search for a place or stop')}" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="ac-tour-stop-${i}" required><span class="ac" id="ac-tour-stop-${i}" role="listbox"></span></label><button type="button" class="btn btn-ghost btn-small" data-a="remove-tour-stop" data-v="${i}" aria-label="${L('Odebrat místo', 'Remove stop')}">${icon('close')}</button></div>`).join('');
+      return `<div class="tour-stops-head"><span>${L('Volitelná místa a zastávky na trase', 'Optional places and stops along the route')}</span><button class="text-link" type="button" data-a="add-tour-stop" ${S.tourStops.length >= 5 ? 'disabled' : ''}>+ ${L('Přidat místo', 'Add a place')}</button></div>${rows}`;
+    }
+    function renderTours() {
+      const cards = TOURS.map(tour => `<article class="card tour-card"><div class="card-icon">${icon('route')}</div><p class="section-kicker">${L('Soukromý jednodenní výlet', 'Private day trip')}</p><h3>${tour.title[lang]}</h3><div class="tour-route">Praha <span>↔</span> ${tour.name[lang]}</div><p>${tour.detail[lang]}</p><p class="tour-duration">${L('Plánovaný celodenní program', 'Full-day itinerary')} · ${tour.duration} h</p><button class="text-link" type="button" data-a="select-tour" data-v="${tour.id}">${L('Vybrat tento výlet', 'Choose this trip')} ${icon('arrow')}</button></article>`).join('');
+      app.innerHTML = head(L('Soukromé výlety', 'Private day trips'), L('Vyrazte z Prahy.<br><em>Výlet podle vás.</em>', 'Explore from Prague.<br><em>Your trip, your way.</em>'), L('Vyberte cíl a termín. Cena minivanu se vypočítá po skutečné zpáteční trase podle kilometrového ceníku; pokračujte k zabezpečené platbě kartou.', 'Choose a destination and date. The minivan fare is calculated from the actual round-trip road distance using the per-kilometre tariff; continue to secure card payment.'))
+        + `<form class="tour-booking" id="tour-form"><label class="form-field"><span>${L('Výlet', 'Tour')}</span><select class="input" name="tourId" id="tour-id" required>${TOURS.map(tour => `<option value="${tour.id}" ${S.tourId === tour.id ? 'selected' : ''}>${tour.name[lang]}</option>`).join('')}</select></label><label class="form-field"><span>${L('Datum', 'Date')}</span><input class="input" type="date" name="tourDate" min="${plusDays(1)}" value="${plusDays(1)}" required></label><label class="form-field"><span>${L('Odjezd z Prahy', 'Departure from Prague')}</span><input class="input" type="time" name="tourTime" min="06:00" max="10:00" value="08:00" required></label><label class="form-field"><span>${L('Cestující', 'Passengers')}</span><select class="input" name="tourPax">${Array.from({ length: FLEET.minibus.pax }, (_, i) => `<option value="${i + 1}" ${i === 1 ? 'selected' : ''}>${i + 1}</option>`).join('')}</select></label><div class="tour-stops">${tourStopsMarkup()}</div><button class="btn btn-solid tour-submit" type="submit">${L('Vypočítat cenu a pokračovat', 'Calculate fare and continue')} ${icon('arrow')}</button><p class="tour-message" id="tour-message" role="status" aria-live="polite"></p></form>`
+        + `<div class="cards">${cards}</div><div class="banner">${icon('info')}<p>${L('Platba kartou proběhne přes Stripe. Rezervace a dostupnost minivanu jsou potvrzeny dispečinkem e-mailem až po kontrole; samotná platba ještě neznamená přidělení vozidla.', 'Card payments use Stripe. The dispatcher confirms the booking and minivan availability by e-mail after review; payment alone does not mean a vehicle has been assigned.')}</p></div></section>`;
+    }
+    async function startTourBooking(form) {
+      const data = new FormData(form);
+      const tour = TOURS.find(item => item.id === data.get('tourId'));
+      const date = String(data.get('tourDate') || ''), time = String(data.get('tourTime') || '');
+      const pax = Number(data.get('tourPax'));
+      const status = $('#tour-message');
+      if (!tour || !/^\d{4}-\d{2}-\d{2}$/.test(date) || !/^0[6-9]:00$|^10:00$/.test(time) || !Number.isInteger(pax) || pax < 1 || pax > FLEET.minibus.pax) {
+        status.textContent = L('Zkontrolujte výlet, datum, čas odjezdu a počet cestujících.', 'Check the tour, date, departure time and passenger count.');
+        return;
+      }
+      if (S.tourStops.length > 5 || S.tourStops.some(stop => !stop.geo || stop.geo.label !== stop.label)) {
+        status.textContent = L('Vyberte každé místo z nabídky vyhledávání, případně ho odeberte.', 'Select every stop from the place suggestions, or remove it.');
+        return;
+      }
+      const retTime = `${String(Number(time.slice(0, 2)) + tour.duration).padStart(2, '0')}:${time.slice(3)}`;
+      Object.assign(S, {
+        mode: 'long', from: 'Praha – centrum', to: tour.to, date, time, pax, car: 'minibus',
+        roundtrip: true, retDate: date, retTime, fromGeo: null, toGeo: null,
+        stopover: '', stopoverGeo: null, tourStops: S.tourStops.map(stop => ({ ...stop })), tourId: tour.id, pay: 'online', promo: '', discount: 0,
+        flight: '', seats: 0, bagsBig: 0, bagsSmall: 0, pram: false, notes: '',
+        name: '', phone: '', email: '', consent: false
+      });
+      invalidateQuote();
+      status.textContent = L('Počítám celou zpáteční trasu po silnici…', 'Calculating the full round trip by road…');
+      const quoted = await requestQuote();
+      if (path !== '/tury' || !status.isConnected) return;
+      if (!quoted) {
+        status.textContent = L('Cenu se nepodařilo ověřit. Zkuste to znovu později nebo kontaktujte dispečink.', 'Could not verify the fare. Try again later or contact dispatch.');
+        return;
+      }
+      if (!await loadPublicConfig()) {
+        status.textContent = L('Nelze ověřit dostupnost zabezpečené platby. Zkuste to později.', 'Could not verify secure payment availability. Try again later.');
+        return;
+      }
+      if (!PUB.stripe) {
+        status.textContent = L(`Cena zpáteční trasy: ${money(Q.prices.minibus.total)}. Online platba zatím není dostupná; kontaktujte dispečink.`, `Round-trip fare: ${money(Q.prices.minibus.total)}. Online payment is not available yet; contact dispatch.`);
+        return;
+      }
+      status.textContent = L(`Cena za celý minivan: ${money(Q.prices.minibus.total)}. Doplňte kontakt a zaplaťte bezpečně kartou.`, `Total for the minivan: ${money(Q.prices.minibus.total)}. Add your contact details and pay securely by card.`);
+      kind = 'book'; step = 1; checkoutKey = uid(); renderBook(); open();
     }
     function renderFleet() {
       const items = Object.entries(FLEET).filter(([k]) => fleetFilter === 'all' || fleetFilter === k);
@@ -1903,7 +2044,7 @@
         + (list.length ? `<div style="margin-top:14px">${list.map(o => `<article class="trip"><div>
             <div class="trip-meta"><span>${dtLbl(o.date, o.time)}</span><span class="status ${o.cancelled ? 'off' : ''}">${o.cancelled ? L('Zrušeno', 'Cancelled') : t('stages')[o.stage]}</span><span>${o.demo ? L('Ukázka', 'Demo') : esc(o.payState || '')}</span></div>
             <h2 class="trip-route trip-itinerary">${itineraryMarkup(orderPlaces(o), o.ext.mode, o.ext.hours)}</h2>
-            <p class="trip-sub">${FLEET[o.car].label} · ${t('pax')(o.pax)} · ${esc(o.id)}</p></div>
+            <p class="trip-sub">${o.ext.tourName ? `${esc(o.ext.tourName)} · ` : ''}${FLEET[o.car].label} · ${t('pax')(o.pax)} · ${esc(o.id)}</p></div>
             <div class="trip-right"><span class="trip-price">${money(o.total)}</span><div class="row-btns">
             <button class="btn btn-ghost btn-small" type="button" data-a="again" data-v="${esc(o.id)}">${L('Objednat znovu', 'Book again')}</button>
             <a class="btn btn-solid btn-small" href="#/jizda/${encodeURIComponent(o.id)}">${L('Detail', 'Detail')} ${icon('arrow')}</a></div></div></article>`).join('')}</div>`
@@ -2014,13 +2155,14 @@
       const dl = cancelDeadline(o);
       const locations = orderPlaces(o);
       const meet = meetingFor(locations.pickup, e.meet);
-      app.innerHTML = head(`${L('Rezervace', 'Booking')} ${esc(o.id)}`, o.cancelled ? L('Rezervace <em>zrušena.</em>', 'Booking <em>cancelled.</em>') : done ? L('Jste na <em>místě.</em>', 'You have <em>arrived.</em>') : L('Vaše cesta.<br><em>Na jednom místě.</em>', 'Your ride.<br><em>In one place.</em>'), o.demo ? L('Lokální ukázka, nikoli rezervovaný vůz.', 'A local preview, not a reserved car.') : L('Přijetí žádosti není potvrzením vozu. Vyčkejte na dispečink.', 'Receiving a request is not a vehicle confirmation. Please await dispatch.'))
+      app.innerHTML = head(`${L('Rezervace', 'Booking')} ${esc(o.id)}`, o.cancelled ? L('Rezervace <em>zrušena.</em>', 'Booking <em>cancelled.</em>') : done ? L('Jste na <em>místě.</em>', 'You have <em>arrived.</em>') : e.tourName ? L('Váš výlet.<br><em>Praha a okolí.</em>', 'Your tour.<br><em>From Prague.</em>') : L('Vaše cesta.<br><em>Na jednom místě.</em>', 'Your ride.<br><em>In one place.</em>'), o.demo ? L('Lokální ukázka, nikoli rezervovaný vůz.', 'A local preview, not a reserved car.') : e.tourId ? L('Platba je ověřována. Dostupnost minivanu a rezervaci výletu ještě potvrdí dispečink.', 'Payment is being verified. Dispatch must still confirm minivan availability and the tour booking.') : L('Přijetí žádosti není potvrzením vozu. Vyčkejte na dispečink.', 'Receiving a request is not a vehicle confirmation. Please await dispatch.'))
         + `<div class="toolbar"><a class="back-link" style="margin:0" href="#/jizdy">${icon('arrow')}${t('nav.trips')}</a><span class="status ${o.cancelled ? 'off' : ''}">${o.cancelled ? L('Zrušeno', 'Cancelled') : t('stages')[o.stage]}</span></div>
         <div class="order-grid"><div class="o-det">
-          <div class="points"><div class="point">${placeMarkup(locations.pickup, L('Vyzvednutí', 'Pickup'))}<small>${esc(dtLbl(o.date, o.time))}</small></div>${locations.stopover ? `<div class="point">${placeMarkup(locations.stopover, L('Zastávka', 'Stopover'))}</div>` : ''}<div class="point">${locations.destination ? placeMarkup(locations.destination, L('Cíl', 'Destination')) : `<strong>${L('Hodinová dispozice', 'Hourly hire')} · ${Number(e.hours) || 0} h</strong>`}<small>${FLEET[o.car].label} · ${t('pax')(o.pax)}</small></div></div>
-          ${Number.isFinite(o.distanceKm) ? `<div class="dline"><span>${L('Trasa po silnici', 'Road route')}</span><span>${esc(fmtKm(o.distanceKm))}${Number.isFinite(o.durationMin) ? ` · ${o.durationMin} min` : ''}</span></div>` : ''}
+          ${e.tourName ? `<div class="dline"><span>${L('Výlet', 'Tour')}</span><span>${esc(e.tourName)}</span></div>` : ''}
+          <div class="points"><div class="point">${placeMarkup(locations.pickup, L('Vyzvednutí', 'Pickup'))}<small>${esc(dtLbl(o.date, o.time))}</small></div>${locations.stopovers.map((point, i) => `<div class="point">${placeMarkup(point, `${L('Místo', 'Stop')} ${i + 1}`)}</div>`).join('')}${locations.stopover ? `<div class="point">${placeMarkup(locations.stopover, L('Zastávka', 'Stopover'))}</div>` : ''}<div class="point">${locations.destination ? placeMarkup(locations.destination, L('Cíl', 'Destination')) : `<strong>${L('Hodinová dispozice', 'Hourly hire')} · ${Number(e.hours) || 0} h</strong>`}<small>${FLEET[o.car].label} · ${t('pax')(o.pax)}</small></div></div>
+          ${Number.isFinite(o.distanceKm) ? `<div class="dline"><span>${e.tourId ? L('Celá zpáteční trasa po silnici', 'Full round-trip road distance') : L('Trasa po silnici', 'Road route')}</span><span>${esc(fmtKm(o.distanceKm))}${Number.isFinite(o.durationMin) ? ` · ${o.durationMin} min` : ''}</span></div>` : ''}
           <div class="dline"><span>${L('Cena', 'Price')}</span><span>${money(o.total)}${o.est ? ` · ${L('orientační', 'estimate')}` : ''}</span></div>
-          <div class="dline"><span>${L('Platba', 'Payment')}</span><span>${t('pay')[o.pay] || esc(o.pay)}<br>${o.payState === 'succeeded' ? o.testPayment ? L('Stripe test: bez skutečného inkasa', 'Stripe test: no real charge') : L('Úhradu ověřil server', 'Payment verified by server') : o.payState === 'pay_on_arrival' ? L('Platba po jízdě', 'Pay after the ride') : L('Online úhrada není potvrzena', 'Online payment not confirmed')}</span></div>
+          <div class="dline"><span>${L('Platba', 'Payment')}</span><span>${t('pay')[o.pay] || esc(o.pay)}<br>${o.payState === 'succeeded' ? o.testPayment ? L('Testovací platba Stripe: skutečné peníze nebyly strženy', 'Stripe test payment: no real charge was made') : L('Úhradu ověřil server', 'Payment verified by server') : o.payState === 'pay_on_arrival' ? L('Platba po jízdě', 'Pay after the ride') : o.payState === 'expired' ? L('Platba nebyla dokončena. Částka nebyla potvrzena jako uhrazená.', 'Payment was not completed. No payment has been confirmed.') : L('Čeká se na potvrzení platby od Stripe.', 'Waiting for payment confirmation from Stripe.')}</span></div>
           <div class="dline"><span>${L('Zavazadla', 'Luggage')}</span><span>${Number(e.bagsBig) || 0}× ${L('velké', 'large')} · ${Number(e.bagsSmall) || 0}× ${L('příruční', 'cabin')}${e.pram ? ` · ${L('kočárek', 'pram')}` : ''}</span></div>
           ${e.seats ? `<div class="dline"><span>${L('Autosedačky', 'Child seats')}</span><span>${Number(e.seats)}× ${SEATS[e.seatType]?.[lang] || ''} · ${L('zdarma', 'free')}</span></div>` : ''}
           ${e.flight ? `<div class="dline"><span>${L('Let', 'Flight')}</span><span>${esc(e.flight)}</span></div>` : ''}
@@ -2160,7 +2302,7 @@
         if (session.orderId !== orderId) throw new Error('Invalid driver session.');
         const itinerary = $('#driver-itinerary');
         if (itinerary && session.locations?.pickup?.label) {
-          itinerary.innerHTML = `${placeMarkup(session.locations.pickup, L('Vyzvednutí', 'Pickup'))}${session.locations.stopover ? placeMarkup(session.locations.stopover, L('Zastávka', 'Stopover')) : ''}${session.locations.destination ? placeMarkup(session.locations.destination, L('Cíl', 'Destination')) : ''}`;
+          itinerary.innerHTML = `${placeMarkup(session.locations.pickup, L('Vyzvednutí', 'Pickup'))}${(session.locations.stopovers || []).map((point, i) => placeMarkup(point, `${L('Místo', 'Stop')} ${i + 1}`)).join('')}${session.locations.stopover ? placeMarkup(session.locations.stopover, L('Zastávka', 'Stopover')) : ''}${session.locations.destination ? placeMarkup(session.locations.destination, L('Cíl', 'Destination')) : ''}`;
           itinerary.hidden = false;
         }
         driverMessage(L('Povolte přesnou polohu v dialogu telefonu. Čekáme na GPS.', 'Allow precise location in the phone prompt. Waiting for GPS.'));
@@ -2279,10 +2421,11 @@
         dataSession.selected = r;
         const lines = [
           [L('Klient', 'Client'), r.customerName], [L('Telefon', 'Phone'), r.phone], ['E-mail', r.email],
+          ...(r.tourName ? [[L('Výlet', 'Tour'), r.tourName]] : []),
           [L('Datum a čas', 'Date and time'), `${dtLbl(r.date, r.time)} (${TZ})`],
           [L('Vůz / cestující', 'Vehicle / passengers'), `${FLEET[r.car]?.label || r.car} / ${r.passengers}`],
           [L('Cena / platba', 'Price / payment'), `${Number.isFinite(r.amount) ? money(r.amount) : '-'} / ${paymentStateName(r.paymentStatus, r.testPayment)}`],
-          [L('Trasa po silnici', 'Road route'), Number.isFinite(r.distanceKm) ? `${fmtKm(r.distanceKm)}${Number.isFinite(r.durationMin) ? ` / ${r.durationMin} min` : ''}` : '-'],
+          [L(r.tourName ? 'Celá zpáteční trasa' : 'Trasa po silnici', r.tourName ? 'Full round-trip route' : 'Road route'), Number.isFinite(r.distanceKm) ? `${fmtKm(r.distanceKm)}${Number.isFinite(r.durationMin) ? ` / ${r.durationMin} min` : ''}` : '-'],
           [L('Let', 'Flight'), r.flight], [L('Tabulka se jménem', 'Name sign'), r.sign],
           [L('Velká / příruční zavazadla', 'Large / cabin bags'), `${r.bagsBig ?? '-'} / ${r.bagsSmall ?? '-'}`],
           [L('Dětské sedačky', 'Child seats'), `${r.childSeats ?? '-'}${r.childSeats ? ` / ${SEATS[r.seatType]?.[lang] || r.seatType}` : ''}`],
@@ -2295,7 +2438,7 @@
           ...(r.roundtrip ? [[L('Zpáteční jízda', 'Return ride'), `${dtLbl(r.returnDate, r.returnTime)} / ${placeText(r.locations.destination)} → ${placeText(r.locations.pickup)}`, true]] : [])
         ];
         kind = 'data-detail';
-        mbody.innerHTML = dHead('Wayro / Operations', L('Detail rezervace', 'Reservation details'), esc(r.id)) + `<div class="summary-itinerary" style="margin-top:24px">${placeMarkup(r.locations.pickup, L('Vyzvednutí', 'Pickup'))}${r.locations.stopover ? placeMarkup(r.locations.stopover, L('Zastávka', 'Stopover')) : ''}${r.locations.destination ? placeMarkup(r.locations.destination, L('Cíl', 'Destination')) : `<p>${L('Hodinová dispozice', 'Hourly hire')} · ${r.hours} h</p>`}</div><dl class="data-detail">${lines.map(([label, value, full]) => `<div class="${full ? 'data-full' : ''}"><dt>${label}</dt><dd>${esc(value || '-')}</dd></div>`).join('')}</dl><div class="d-actions"><button class="btn btn-ghost" data-a="close" type="button">${L('Zavřít', 'Close')}</button>${!r.cancelled && r.stage < 6 ? `<a class="btn btn-solid" href="#/dispecink?order=${encodeURIComponent(r.id)}">${L('Přiřadit řidiče', 'Assign driver')}${icon('arrow')}</a>` : ''}</div></div>`;
+        mbody.innerHTML = dHead('Wayro / Operations', L('Detail rezervace', 'Reservation details'), esc(r.id)) + `<div class="summary-itinerary" style="margin-top:24px">${placeMarkup(r.locations.pickup, L('Vyzvednutí', 'Pickup'))}${(r.locations.stopovers || []).map((point, i) => placeMarkup(point, `${L('Místo', 'Stop')} ${i + 1}`)).join('')}${r.locations.stopover ? placeMarkup(r.locations.stopover, L('Zastávka', 'Stopover')) : ''}${r.locations.destination ? placeMarkup(r.locations.destination, L('Cíl', 'Destination')) : `<p>${L('Hodinová dispozice', 'Hourly hire')} · ${r.hours} h</p>`}</div><dl class="data-detail">${lines.map(([label, value, full]) => `<div class="${full ? 'data-full' : ''}"><dt>${label}</dt><dd>${esc(value || '-')}</dd></div>`).join('')}</dl><div class="d-actions"><button class="btn btn-ghost" data-a="close" type="button">${L('Zavřít', 'Close')}</button>${!r.cancelled && r.stage < 6 ? `<a class="btn btn-solid" href="#/dispecink?order=${encodeURIComponent(r.id)}">${L('Přiřadit řidiče', 'Assign driver')}${icon('arrow')}</a>` : ''}</div></div>`;
         open();
       } catch (error) {
         if (sequence === dataSession.sequence && path === PRIVATE_DATA_PATH && error.name !== 'AbortError') $('#data-message').textContent = error.message;
@@ -2304,7 +2447,7 @@
     function exportReservations() {
       if (!dataSession.authorized || !dataSession.items.length || dataSession.expiresAt <= Date.now()) return;
       const cell = value => `"${String(value ?? '').replace(/^[\s\u0000-\u001f]*[=+@-]/, "'$&").replaceAll('"', '""')}"`;
-      const rows = [[L('Rezervace', 'Booking'), L('Klient', 'Client'), L('Datum', 'Date'), L('Čas', 'Time'), L('Vyzvednutí', 'Pickup'), L('Cíl', 'Destination'), L('Zastávka', 'Stopover'), L('Vůz', 'Vehicle'), 'CZK', L('Stav platby', 'Payment status')], ...dataSession.items.map(r => [r.id, r.customerName, r.date, r.time, placeText(r.locations.pickup), r.locations.destination ? placeText(r.locations.destination) : L('Hodinová dispozice', 'Hourly hire') + ` (${Number(r.hours) || 0} h)`, placeText(r.locations.stopover), FLEET[r.car]?.label || r.car, r.amount, paymentStateName(r.paymentStatus, r.testPayment)])];
+      const rows = [[L('Rezervace', 'Booking'), L('Výlet', 'Tour'), L('Klient', 'Client'), L('Datum', 'Date'), L('Čas', 'Time'), L('Vyzvednutí', 'Pickup'), L('Cíl', 'Destination'), L('Místa výletu', 'Tour stops'), L('Zastávka', 'Stopover'), L('Vůz', 'Vehicle'), 'CZK', L('Stav platby', 'Payment status')], ...dataSession.items.map(r => [r.id, r.tourName, r.customerName, r.date, r.time, placeText(r.locations.pickup), r.locations.destination ? placeText(r.locations.destination) : L('Hodinová dispozice', 'Hourly hire') + ` (${Number(r.hours) || 0} h)`, (r.locations.stopovers || []).map((point, i) => `${i + 1}. ${placeText(point)}`).join(' | '), placeText(r.locations.stopover), FLEET[r.car]?.label || r.car, r.amount, paymentStateName(r.paymentStatus, r.testPayment)])];
       download(`wayro-reservations-page-${dataSession.page}.csv`, rows.map(row => row.map(cell).join(';')).join('\r\n'), 'text/csv;charset=utf-8');
     }
 
@@ -2364,6 +2507,11 @@
       if (!h.startsWith('/')) h = '/';
       const [p, qs = ''] = h.split('?');
       path = p.replace(/\/$/, '') || '/';
+      if (path !== '/tury' && S.tourId) {
+        S.tourId = '';
+        S.roundtrip = false;
+        invalidateQuote();
+      }
       const urlParams = new URLSearchParams(qs || window.location.search);
       const isPrivate = path === PRIVATE_DATA_PATH;
       if (!isPrivate && (dataSession.key || dataSession.authorized)) clearDataSession('', false);
@@ -2388,14 +2536,14 @@
       const home = path === '/';
       document.body.classList.toggle('is-sub', !home);
       $('#stats').hidden = !home;
-      const active = { '/sluzby': 'services', '/vozy': 'fleet', '/letiste': 'airport', '/firmy': 'business', '/napoveda': 'help', '/jizdy': 'trips' }[path] || '';
+      const active = { '/sluzby': 'services', '/vozy': 'fleet', '/letiste': 'airport', '/firmy': 'business', '/tury': 'tours', '/napoveda': 'help', '/jizdy': 'trips' }[path] || '';
       $$('.nav-link').forEach(a => { const on = a.dataset.p === active; a.classList.toggle('active', on); on ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'); });
-      const R = { '/': renderHome, '/sluzby': renderServices, '/vozy': renderFleet, '/letiste': renderAirport, '/firmy': renderBusiness, '/jizdy': renderTrips, '/hodnoceni': renderReviews, '/napoveda': renderHelp, '/doporuceni': renderRef, '/ridic': renderDriver, '/dispecink': renderDispatch, '/nastaveni': renderSetup, [PRIVATE_DATA_PATH]: renderDataPage };
+      const R = { '/': renderHome, '/sluzby': renderServices, '/vozy': renderFleet, '/letiste': renderAirport, '/firmy': renderBusiness, '/tury': renderTours, '/jizdy': renderTrips, '/hodnoceni': renderReviews, '/napoveda': renderHelp, '/doporuceni': renderRef, '/ridic': renderDriver, '/dispecink': renderDispatch, '/nastaveni': renderSetup, [PRIVATE_DATA_PATH]: renderDataPage };
       if (R[path]) R[path]();
       else if (path.startsWith('/jizda/')) { try { const id = decodeURIComponent(path.slice(7)); renderOrder(id); verifyPayment(id); } catch { renderMissing(); } }
       else renderMissing();
       if (path === '/dispecink' && urlParams.has('order')) { const field = $('#dispatch-form [name="orderId"]'); if (field) field.value = urlParams.get('order').slice(0, 80); }
-      const titles = { '/': L('Taxi na letiště Praha', 'Prague airport taxi'), '/sluzby': t('nav.services'), '/vozy': t('nav.fleet'), '/letiste': t('nav.airport'), '/firmy': t('nav.business'), '/jizdy': t('nav.trips'), '/hodnoceni': L('Hodnocení', 'Reviews'), '/napoveda': t('nav.help'), '/doporuceni': L('Doporučení', 'Referrals'), [PRIVATE_DATA_PATH]: L('Soukromé rezervace', 'Private reservations') };
+      const titles = { '/': L('Taxi na letiště Praha', 'Prague airport taxi'), '/sluzby': t('nav.services'), '/vozy': t('nav.fleet'), '/letiste': t('nav.airport'), '/firmy': t('nav.business'), '/tury': t('nav.tours'), '/jizdy': t('nav.trips'), '/hodnoceni': L('Hodnocení', 'Reviews'), '/napoveda': t('nav.help'), '/doporuceni': L('Doporučení', 'Referrals'), [PRIVATE_DATA_PATH]: L('Soukromé rezervace', 'Private reservations') };
       document.title = `Transfer by Van | ${titles[path] || L('Rezervace', 'Booking')}`;
       count(); anim(app); window.scrollTo(0, 0);
       if (navCount++ > 0 && !home) { const hh = $('h1', app); hh?.setAttribute('tabindex', '-1'); hh?.focus({ preventScroll: true }); }
@@ -2418,30 +2566,38 @@
       const q = fare();
       const locations = draftPlaces();
       const meet = meetingFor(locations.pickup, S.meet);
-      return `<aside class="summary"><h3 class="sum-h">${L('Vaše jízda', 'Your ride')}</h3>
-        <div class="summary-itinerary">${placeMarkup(locations.pickup, L('Vyzvednutí', 'Pickup'))}${locations.stopover ? placeMarkup(locations.stopover, L('Zastávka', 'Stopover')) : ''}${locations.destination ? placeMarkup(locations.destination, L('Cíl', 'Destination')) : `<span>${L('Hodinová dispozice', 'Hourly hire')} · ${S.hours} h</span>`}</div>
-        <p class="sum-det">${dtLbl(S.date, S.time)}<br>${FLEET[S.car].label} · ${t('pax')(S.pax)}${Number.isFinite(q.km) && q.km > 0 ? `<br>${q.km.toFixed(1).replace('.', lang === 'cs' ? ',' : '.')} km${Number.isFinite(q.min) && q.min > 0 ? ` · ${q.min} min` : ''}` : ''}${S.roundtrip ? `<br>${L('Zpět', 'Back')}: ${dtLbl(S.retDate, S.retTime)}` : ''}${meet ? `<br>${meet.t} · ${meet.s}` : ''}</p>
-        <div class="pline-wrap"><div class="pline"><span>${S.mode === 'hourly' ? L('Dispozice', 'Hourly hire') : L('Transfer', 'Transfer')}</span><span>${money(q.base)}</span></div>
-        ${q.ret ? `<div class="pline"><span>${L('Zpáteční jízda', 'Return ride')}</span><span>${money(q.ret)}</span></div>` : ''}
+      const tour = TOURS.find(item => item.id === S.tourId);
+      return `<aside class="summary"><h3 class="sum-h">${tour ? L('Váš výlet', 'Your tour') : L('Vaše jízda', 'Your ride')}</h3>
+        ${tour ? `<p class="note">${tour.title[lang]}</p>` : ''}
+        <div class="summary-itinerary">${placeMarkup(locations.pickup, L('Vyzvednutí', 'Pickup'))}        ${locations.stopovers.map((point, i) => placeMarkup(point, `${L('Místo', 'Stop')} ${i + 1}`)).join('')}${locations.stopover ? placeMarkup(locations.stopover, L('Zastávka', 'Stopover')) : ''}${locations.destination ? placeMarkup(locations.destination, L('Cíl', 'Destination')) : `<span>${L('Hodinová dispozice', 'Hourly hire')} · ${S.hours} h</span>`}</div>
+        <p class="sum-det">${dtLbl(S.date, S.time)}<br>${FLEET[S.car].label} · ${t('pax')(S.pax)}${Number.isFinite(q.km) && q.km > 0 ? `<br>${tour ? L('Celá zpáteční trasa', 'Full round trip') : L('Trasa po silnici', 'Road distance')}: ${q.km.toFixed(1).replace('.', lang === 'cs' ? ',' : '.')} km${Number.isFinite(q.min) && q.min > 0 ? ` · ${q.min} min` : ''}` : ''}${S.roundtrip ? `<br>${L('Zpět', 'Back')}: ${dtLbl(S.retDate, S.retTime)}` : ''}${meet ? `<br>${meet.t} · ${meet.s}` : ''}</p>
+        <div class="pline-wrap">${tour
+          ? `<div class="pline"><span>${L('Cena celé zpáteční trasy', 'Full round-trip fare')}</span><span>${money((q.base || 0) + (q.ret || 0))}</span></div>`
+          : `<div class="pline"><span>${S.mode === 'hourly' ? L('Dispozice', 'Hourly hire') : L('Transfer', 'Transfer')}</span><span>${money(q.base)}</span></div>
+        ${q.ret ? `<div class="pline"><span>${L('Zpáteční jízda', 'Return ride')}</span><span>${money(q.ret)}</span></div>` : ''}`}
         ${S.seats ? `<div class="pline"><span>${L('Autosedačka', 'Child seat')} ×${S.seats}</span><span>${L('zdarma', 'free')}</span></div>` : ''}
         ${q.disc ? `<div class="pline disc"><span>${L('Sleva', 'Discount')} ${Math.round(S.discount * 100)} %</span><span>−${money(q.disc)}</span></div>` : ''}</div>
         <div class="total-row"><span>${q.kind === 'fixed' ? L('Celkem', 'Total') : L('Odhad', 'Estimate')}</span><strong>${money(q.total)}</strong></div>
-        <p class="sum-inc">${L('Cedulka se jménem', 'Name sign')}<br>${L('Autosedačka zdarma', 'Free child seat')}<br>${L('Wi-Fi a voda ve voze', 'Wi-Fi and water on board')}<br>${L('Platba po jízdě při volbě u řidiče', 'Pay after the ride when choosing driver payment')}</p>
-        <p class="fine" style="margin-top:14px">${q.kind === 'fixed' ? L('Pevná cena za vozidlo.', 'Fixed price per vehicle.') : L('Orientační cena, potvrdí dispečer.', 'Estimate, confirmed by dispatch.')}<br>${L('Zkontrolujte konkrétní místa a adresy před odesláním.', 'Check the exact locations and addresses before submitting.')}</p></aside>`;
+        <p class="sum-inc">${L('Cedulka se jménem', 'Name sign')}<br>${L('Autosedačka zdarma', 'Free child seat')}<br>${L('Wi-Fi a voda ve voze', 'Wi-Fi and water on board')}${tour ? '' : `<br>${S.pay === 'online' ? L('Bezpečná online platba přes Stripe', 'Secure online payment via Stripe') : L('Platba po jízdě při volbě u řidiče', 'Pay after the ride when choosing driver payment')}`}</p>
+        <p class="fine" style="margin-top:14px">${tour ? L('Cena se počítá podle celé trasy a potvrzené sazby; dostupnost minivanu potvrdí dispečink.', 'Fare uses the full route and agreed tariff; dispatch confirms minivan availability.') : q.kind === 'fixed' ? L('Pevná cena za vozidlo.', 'Fixed price per vehicle.') : L('Orientační cena, potvrdí dispečer.', 'Estimate, confirmed by dispatch.')}<br>${L('Zkontrolujte konkrétní místa a adresy před odesláním.', 'Check the exact locations and addresses before submitting.')}</p></aside>`;
     }
     const counter = (key, label, note, max, ic) => `<div class="counter-row"><div class="c-label">${icon(ic)}<span>${label}<small>${note}</small></span></div><div class="counter"><button type="button" data-a="cnt" data-k="${key}" data-d="-1" aria-label="−" ${S[key] === 0 ? 'disabled' : ''}>${icon('minus')}</button><output id="c-${key}">${S[key]}</output><button type="button" data-a="cnt" data-k="${key}" data-d="1" aria-label="+" ${S[key] >= max ? 'disabled' : ''}>${icon('plus')}</button></div></div>`;
 
     function renderBook() {
       const one = step === 1;
       const car = FLEET[S.car];
+      const tour = TOURS.find(item => item.id === S.tourId);
       const airportPickup = pickupType(draftPlaces().pickup) === 'airport';
       if (airportPickup && !['t1', 't2'].includes(S.meet)) S.meet = 't1';
+      const vehicleChoices = tour
+        ? `<div class="pick"><span>${car.label}<small style="display:block;color:var(--ink-faint)">${tour.title[lang]} · ${L('max.', 'max')} ${car.pax}</small></span><small class="pick-price">${money(fare().total)}</small></div>`
+        : Object.entries(FLEET).map(([k, c]) => `<label class="pick"><input type="radio" name="car" value="${k}" ${S.car === k ? 'checked' : ''}><span>${c.label}<small style="display:block;color:var(--ink-faint)">${L('max', 'max')} ${c.pax} · ${c.bags} ${L('zav.', 'bags')}</small></span><small class="pick-price">${money(fare({ ...S, car: k }).total)}</small></label>`).join('');
       mbody.innerHTML = dHead(one ? L('01 / Detaily jízdy', '01 / Ride details') : L('02 / Kontakt a platba', '02 / Contact and payment'),
         one ? L('Ať sedí každý detail.', 'Let us get the details right.') : L('Kam vám pošleme potvrzení?', 'Where should we confirm?'),
-        one ? L('Vůz, zavazadla a autosedačky. Vše zdarma navíc.', 'Vehicle, luggage and child seats. All extras free.') : L('Dispečer rezervaci potvrzuje e-mailem. V ukázce se nic neodesílá.', 'Dispatch confirms by e-mail. Nothing is sent in this demo.'))
+        one ? L('Vůz, zavazadla a autosedačky. Vše zdarma navíc.', 'Vehicle, luggage and child seats. All extras free.') : S.pay === 'online' ? L('Bezpečná online platba proběhne přes Stripe.', 'Secure online payment is processed through Stripe.') : L('Dispečer rezervaci potvrdí e-mailem; zaplatíte u řidiče.', 'Dispatch confirms the booking by e-mail; pay the driver after the ride.'))
         + `<div class="checkout"><div class="co-main"><form id="co-form">${one ? `
         <span class="s-label" style="margin-top:0">${L('Vůz', 'Vehicle')}</span>
-        <div class="picks">${Object.entries(FLEET).map(([k, c]) => `<label class="pick"><input type="radio" name="car" value="${k}" ${S.car === k ? 'checked' : ''}><span>${c.label}<small style="display:block;color:var(--ink-faint)">${L('max', 'max')} ${c.pax} · ${c.bags} ${L('zav.', 'bags')}</small></span><small class="pick-price">${money(fare({ ...S, car: k }).total)}</small></label>`).join('')}</div>
+        <div class="picks">${vehicleChoices}</div>
         ${airportPickup ? `<span class="s-label">${L('Terminál vyzvednutí', 'Pickup terminal')}</span><div class="picks">${['t1','t2'].map(k => { const m = MEETS[k]; return `<label class="pick"><input type="radio" name="meet" value="${k}" ${S.meet === k ? 'checked' : ''}><span>${m.t}<small style="display:block;color:var(--ink-faint)">${m.s}</small></span></label>`; }).join('')}</div>` : ''}
         <div class="form-grid"><label class="form-field"><span>${L('Číslo letu', 'Flight number')}${airportPickup ? '' : L(' (nepovinné)', ' (optional)')}</span><input class="input" name="flight" value="${esc(S.flight)}" placeholder="LH1400" maxlength="9" style="text-transform:uppercase"></label>
         <label class="form-field"><span>${L('Jméno na cedulku', 'Name for the sign')}</span><input class="input" name="sign" value="${esc(S.sign || '')}" placeholder="${L('Např. Novák', 'e.g. Novak')}" maxlength="50"></label></div>
@@ -2452,7 +2608,7 @@
         <span class="s-label">${L('Děti', 'Children')}</span>
         ${car.seats === 0 ? `<p class="note">${L('Mercedes E nenabízí autosedačku. Vyberte jiný vůz.', 'Mercedes E does not offer a child seat. Choose another vehicle.')}</p>` : counter('seats', L('Autosedačka (max. 1)', 'Child seat (max. 1)'), L('zdarma', 'free of charge'), Math.min(car.seats, S.pax), 'seat')}
         ${S.seats ? `<label class="form-field" style="margin-top:15px"><span>${L('Typ sedačky', 'Seat type')}</span><select class="input" name="seatType">${Object.entries(SEATS).map(([k, v]) => `<option value="${k}" ${S.seatType === k ? 'selected' : ''}>${v[lang] || v.cs}</option>`).join('')}</select></label>` : ''}
-        ${addressField('stopover', L('Zastávka po cestě (nepovinné)', 'Stop along the way (optional)'), S.stopover || '', '', false)}
+        ${tour ? '' : addressField('stopover', L('Zastávka po cestě (nepovinné)', 'Stop along the way (optional)'), S.stopover || '', '', false)}
         <label class="form-field" style="margin-top:15px"><span>${L('Poznámka pro řidiče', 'Note for the driver')}</span><textarea class="input" name="notes" rows="2" maxlength="400" placeholder="${L('Nadměrné zavazadlo, jiná domluva…', 'Oversized luggage, other agreement…')}">${esc(S.notes)}</textarea></label>
         <input type="hidden" id="promo" value="${esc(S.promo)}">
         <p class="err" id="co-err" role="alert" hidden></p><div class="d-actions"><button class="btn btn-solid" type="submit">${L('Pokračovat', 'Continue')} ${icon('arrow')}</button></div>` : `
@@ -2460,9 +2616,9 @@
         <div class="form-grid"><label class="form-field"><span>${L('Telefon', 'Phone')}</span><input class="input" name="phone" type="tel" value="${esc(S.phone)}" placeholder="+420 777 123 456" maxlength="25" autocomplete="tel" required></label>
         <label class="form-field"><span>E-mail <span style="color:var(--ink-faint);font-weight:400">${L('(pro odpověď dispečinku)', '(for the dispatcher reply)')}</span></span><input class="input" name="email" type="email" value="${esc(S.email)}" placeholder="jan@example.com" maxlength="120" autocomplete="email" required></label></div>
         <span class="s-label">${L('Platba', 'Payment')}</span>
-        ${[['cash', 'cash'], ['card', 'card'], ['online', 'globe']].map(([k, ic]) => `<label class="pick" style="margin-bottom:8px"><input type="radio" name="pay" value="${k}" ${S.pay === k ? 'checked' : ''}>${icon(ic)}<span>${t('pay')[k]}<small style="display:block;color:var(--ink-faint)">${t('pay')[k + 'S']}</small></span></label>`).join('')}
-        <div class="banner" style="font-size:11.5px">${icon('info')}<p>${S.pay === 'online' && !CONFIG.bookingEndpoint ? L('Online platba běží přes platební bránu na serveru. Bez spuštěného backendu zvol platbu u řidiče, jak je to ve Wayro zvykem.', 'Online payment runs through the gateway on the server. If the backend is not running, choose payment to the driver, which is Wayro standard.') : L('Neplatíte nic předem. Rezervace je ve stavu zpracování, dokud ji dispečer nepotvrdí e-mailem.', 'You pay nothing upfront. The booking stays in processing until dispatch confirms it by e-mail.')}</p></div>
-        <label class="check"><input type="checkbox" name="consent" ${S.consent ? 'checked' : ''} required><span>${L('Souhlasím se zpracováním údajů pro rezervaci a s podmínkami Wayro. Závazná je až potvrzení dispečinkem.', 'I agree to data processing for this booking and to Wayro terms. It becomes binding only after dispatch confirms it.')}</span></label>
+        ${tour ? `<input type="hidden" name="pay" value="online"><div class="pick">${icon('globe')}<span>${L('Online kartou přes Stripe', 'Online card payment via Stripe')}<small style="display:block;color:var(--ink-faint)">${L('Částka se strhne při platbě. Dostupnost minivanu následně potvrdí dispečink.', 'The amount is charged at checkout. Dispatch confirms minivan availability afterward.')}</small></span></div>` : [['cash', 'cash'], ['card', 'card'], ['online', 'globe']].map(([k, ic]) => `<label class="pick" style="margin-bottom:8px"><input type="radio" name="pay" value="${k}" ${S.pay === k ? 'checked' : ''}>${icon(ic)}<span>${t('pay')[k]}<small style="display:block;color:var(--ink-faint)">${t('pay')[k + 'S']}</small></span></label>`).join('')}
+        <div class="banner" style="font-size:11.5px">${icon('info')}<p>${S.pay === 'online' ? L('Platba proběhne bezpečně přes Stripe. Rezervaci a dostupnost vozu následně potvrdí dispečink e-mailem.', 'Payment is processed securely through Stripe. Dispatch will confirm the booking and vehicle availability by e-mail.') : L('Neplatíte nic předem. Rezervace je ve stavu zpracování, dokud ji dispečer nepotvrdí e-mailem.', 'You pay nothing upfront. The booking stays in processing until dispatch confirms it by e-mail.')}</p></div>
+        <label class="check"><input type="checkbox" name="consent" ${S.consent ? 'checked' : ''} required><span>${S.pay === 'online' ? L('Souhlasím se zpracováním údajů a beru na vědomí online platbu přes Stripe; rezervaci potvrdí dispečink e-mailem.', 'I agree to data processing and understand payment is online through Stripe; dispatch will confirm the booking by e-mail.') : L('Souhlasím se zpracováním údajů pro rezervaci a s podmínkami Wayro. Závazná je až potvrzení dispečinkem.', 'I agree to data processing for this booking and to Wayro terms. It becomes binding only after dispatch confirms it.')}</span></label>
         <p class="err" id="co-err" role="alert" hidden></p>
         <div class="d-actions"><button class="btn btn-ghost" type="button" data-a="co-back">${L('Zpět', 'Back')}</button><button class="btn btn-solid" id="co-send" type="submit">${L('Odeslat rezervaci', 'Send booking')} ${icon('arrow')}</button></div>`}</form></div><div id="sum">${summary()}</div></div></div>`;
       modal.scrollTop = 0;
@@ -2476,7 +2632,7 @@
         S.flight = String(d.get('flight') || '').trim().toUpperCase();
         S.sign = String(d.get('sign') || '').trim();
         S.notes = String(d.get('notes') || '').trim();
-        S.stopover = String(d.get('stopover') || '').trim();
+        S.stopover = S.tourId ? '' : String(d.get('stopover') || '').trim();
         if (S.stopoverGeo?.label !== S.stopover) S.stopoverGeo = null;
         S.pram = d.has('pram');
         if (d.get('meet')) S.meet = String(d.get('meet'));
@@ -2501,6 +2657,16 @@
       if (!quoted) {
         if ($('#book-err')) { $('#book-err').textContent = L('Vyberte přesná místa a vyčkejte na potvrzený výpočet. Bez něj rezervaci neodesíláme.', 'Select exact places and wait for a confirmed quote. We do not submit bookings without it.'); $('#book-err').hidden = false; }
         return;
+      }
+      if (S.pay === 'online') {
+        if (!await loadPublicConfig()) {
+          if ($('#book-err')) { $('#book-err').textContent = L('Nelze ověřit dostupnost Stripe. Zkuste to později.', 'Could not verify Stripe availability. Please try again later.'); $('#book-err').hidden = false; }
+          return;
+        }
+        if (!PUB.stripe) {
+          if ($('#book-err')) { $('#book-err').textContent = L('Online platba Stripe není dostupná. Zvolte platbu u řidiče nebo kontaktujte dispečink.', 'Stripe online payment is unavailable. Choose driver payment or contact dispatch.'); $('#book-err').hidden = false; }
+          return;
+        }
       }
       if ($('#book-err')) $('#book-err').hidden = true;
       if (S.mode === 'from') S.flight = S.flight || '';
@@ -2539,7 +2705,8 @@
       const locations = {
         pickup: snapshotPlace(chosen.pickup, b.from),
         destination: b.mode === 'hourly' ? null : snapshotPlace(chosen.destination, b.to),
-        stopover: chosen.stopover ? snapshotPlace(chosen.stopover, b.stopover) : null
+        stopover: chosen.stopover ? snapshotPlace(chosen.stopover, b.stopover) : null,
+        stopovers: (chosen.stopovers || []).map(point => snapshotPlace(point, point.label))
       };
       return {
         id: `WY-${uid().slice(0, 6).toUpperCase()}`, at: new Date().toISOString(),
@@ -2549,7 +2716,7 @@
         date: b.date, time: b.time, car: b.car, pax: b.pax, total: receipt?.amount?.value ?? q.total, est: q.kind !== 'fixed',
         stage: 0, cancelled: false, demo, pay: b.pay, payState: demo ? 'demo' : 'pending',
         name: b.name, phone4: b.phone.replace(/\D/g, '').slice(-4),
-        ext: { mode: b.mode, hours: b.hours, flight: b.flight, meet: b.meet, fromAirport: pickupType(locations.pickup) === 'airport', sign: b.sign || b.name, seats: b.seats, seatType: b.seatType, bagsBig: b.bagsBig, bagsSmall: b.bagsSmall, pram: b.pram, stopover: locations.stopover?.label || '', stopoverGeo: locations.stopover, notes: b.notes, promo: b.promo, roundtrip: b.roundtrip, retDate: b.retDate, retTime: b.retTime, long: [place(b.from), place(b.to)].some(p => p && ['cz','eu'].includes(p.g)) }
+        ext: { mode: b.mode, hours: b.hours, flight: b.flight, meet: b.meet, tourId: b.tourId || '', tourName: TOURS.find(tour => tour.id === b.tourId)?.name[lang] || '', fromAirport: pickupType(locations.pickup) === 'airport', sign: b.sign || b.name, seats: b.seats, seatType: b.seatType, bagsBig: b.bagsBig, bagsSmall: b.bagsSmall, pram: b.pram, stopover: locations.stopover?.label || '', stopoverGeo: locations.stopover, tourStops: locations.stopovers, notes: b.notes, promo: b.promo, roundtrip: b.roundtrip, retDate: b.retDate, retTime: b.retTime, long: [place(b.from), place(b.to)].some(p => p && ['cz','eu'].includes(p.g)) }
       };
     }
     async function sendBooking() {
@@ -2583,7 +2750,7 @@
             method: 'POST', 
             credentials: 'same-origin', 
             headers: { 'Content-Type': 'application/json', 'Idempotency-Key': checkoutKey },
-            body: JSON.stringify({ booking: { ...submitted, language: lang }, quoteId: submittedQuote.id, expectedTotal: submittedQuote.price }),
+            body: JSON.stringify({ booking: { ...submitted, tourStops: submitted.tourStops.map(stop => stop.geo), language: lang }, quoteId: submittedQuote.id, expectedTotal: submittedQuote.price }),
             signal: AbortSignal.timeout(45000)
           });
 
@@ -2591,7 +2758,7 @@
           if (!res.ok) throw new Error(data.error || L('Server rezervaci nepotvrdil.', 'The server did not confirm the booking.'));
 
           const receivedId = data.orderId || data.id;
-          if (typeof receivedId !== 'string' || !receivedId || typeof data.accessToken !== 'string' || data.amount?.currency !== 'CZK' || data.amount.value !== submittedQuote.price || !snapshotMatchesBooking(data.locations?.pickup, 'from', submitted) || (submitted.mode !== 'hourly' && !snapshotMatchesBooking(data.locations?.destination, 'to', submitted))) throw new Error(L('Odpověď serveru není úplná. Ověřte rezervaci u dispečinku.', 'The server response is incomplete. Check the booking with dispatch.'));
+          if (typeof receivedId !== 'string' || !receivedId || typeof data.accessToken !== 'string' || data.amount?.currency !== 'CZK' || data.amount.value !== submittedQuote.price || !snapshotMatchesBooking(data.locations?.pickup, 'from', submitted) || (submitted.mode !== 'hourly' && !snapshotMatchesBooking(data.locations?.destination, 'to', submitted)) || (submitted.tourStops.length && (!Array.isArray(data.locations?.stopovers) || data.locations.stopovers.length !== submitted.tourStops.length || data.locations.stopovers.some((point, i) => point.label !== submitted.tourStops[i].geo.label)))) throw new Error(L('Odpověď serveru není úplná. Ověřte rezervaci u dispečinku.', 'The server response is incomplete. Check the booking with dispatch.'));
           let paymentUrl = null;
           if (submitted.pay === 'online') {
             paymentUrl = new URL(data.confirmationUrl);
@@ -2645,7 +2812,7 @@
     function again(id) {
       const o = orders.find(x => x.id === id); if (!o) return;
       const locations = orderPlaces(o);
-      Object.assign(S, { mode: o.ext.mode || 'long', from: locations.pickup.label, to: locations.destination?.label || '', fromGeo: validGeo(locations.pickup) ? locations.pickup : null, toGeo: validGeo(locations.destination) ? locations.destination : null, stopover: locations.stopover?.label || '', stopoverGeo: validGeo(locations.stopover) ? locations.stopover : null, roundtrip: !!o.ext.roundtrip, retDate: plusDays(2), retTime: o.ext.retTime || '12:00', date: plusDays(1), time: o.time, pax: o.pax, car: o.car, hours: o.ext.hours || 3, meet: o.ext.meet || 't1', seats: o.ext.seats || 0, seatType: o.ext.seatType || 'mid', bagsBig: o.ext.bagsBig ?? 1, bagsSmall: o.ext.bagsSmall ?? 1, pram: Boolean(o.ext.pram), notes: o.ext.notes || '', flight: '', promo: '', discount: 0, name: '', phone: '', email: '', consent: false });
+      Object.assign(S, { mode: o.ext.mode || 'long', from: locations.pickup.label, to: locations.destination?.label || '', fromGeo: validGeo(locations.pickup) ? locations.pickup : null, toGeo: validGeo(locations.destination) ? locations.destination : null, stopover: locations.stopover?.label || '', stopoverGeo: validGeo(locations.stopover) ? locations.stopover : null, roundtrip: !!o.ext.roundtrip, retDate: plusDays(2), retTime: o.ext.retTime || '12:00', date: plusDays(1), time: o.time, pax: o.pax, car: o.car, hours: o.ext.hours || 3, meet: o.ext.meet || 't1', seats: o.ext.seats || 0, seatType: o.ext.seatType || 'mid', bagsBig: o.ext.bagsBig ?? 1, bagsSmall: o.ext.bagsSmall ?? 1, pram: Boolean(o.ext.pram), notes: o.ext.notes || '', flight: '', promo: '', discount: 0, name: '', phone: '', email: '', consent: false, tourId: '' });
       invalidateQuote();
       if (path === '/') { renderHome(); anim(app); } else location.hash = '/';
       toast(L('Trasa načtena. Zkontrolujte prosím datum a čas.', 'Route loaded. Please check the date and time.'));
@@ -2686,7 +2853,7 @@
         <p style="margin-top:14px">${L('Pozici řidiče nikdo nerisuje. Buď ji pošve řidičská aplikace do backendu, nebo se na mapě zobrazí jen plánovaná trasa.', 'The driver position is never invented. Either the driver app pushes it to the backend, or the map shows only the planned route.')}</p>
         <p style="margin-top:14px">${L('Historie v prohlížeči neobsahuje celé telefonní číslo ani e-mail. Server uchovává kontakty, zvolená místa a adresy pro vyřízení rezervace. Přehled těchto údajů je dostupný pouze po ověření přístupu dispečinku. Číslo karty se zadává jen u platebního poskytovatele.', 'Browser history does not contain your full phone number or e-mail. The server keeps contacts, selected locations and addresses to process your booking. Access to these records requires dispatcher authorization. Card details are entered only with the payment provider.')}</p>
         <p style="margin-top:14px">${L('Bez spuštěného backendu se objednávka nikam neposílá. S backendem míří na /api/checkout a platba teče přes platební bránu.', 'Without the backend nothing is sent. With it, the booking goes to /api/checkout and payment runs through the gateway.')}</p>
-        <p style="margin-top:14px">${L('Sledování polohy a letů, potvrzovací e-maily a online platba by vyžadovaly serverovou část.', 'Live tracking, flight data, confirmation e-mails and online payments would require a backend.')}</p></div>
+        <p style="margin-top:14px">${L('Online platba kartou probíhá přes Stripe Checkout. Číslo karty zpracovává výhradně Stripe; server ověřuje výsledek platby před změnou stavu rezervace.', 'Online card payments use Stripe Checkout. Card details are handled only by Stripe; the server verifies the result before changing the booking payment status.')}</p></div>
         <a class="btn btn-ghost wide" href="${SITE.home}" target="_blank" rel="noopener">${L('Otevřít provozní web', 'Open operator site')} ↗</a>
         <button class="btn btn-solid wide" type="button" data-a="close">${L('Rozumím', 'Got it')}</button></div>`;
       open(true);
@@ -2716,6 +2883,7 @@
         `${L('Vyzvednutí', 'Pickup')}: ${dtLbl(o.date, o.time)} (${TZ})`,
         `${L('Vůz', 'Vehicle')}: ${FLEET[o.car].label} · ${t('pax')(o.pax)}`,
         o.ext.flight ? `${L('Let', 'Flight')}: ${o.ext.flight}` : '',
+        ...locations.stopovers.map((point, i) => `${L('Místo', 'Stop')} ${i + 1}: ${placeText(point)}`),
         locations.stopover ? `${L('Zastávka', 'Stop')}: ${placeText(locations.stopover)}` : '',
         m ? `${L('Doplnění k vyzvednutí', 'Pickup instructions')}: ${m.t}, ${m.s}` : '',
         Number.isFinite(o.distanceKm) ? `${L('Trasa po silnici', 'Road route')}: ${fmtKm(o.distanceKm)}${Number.isFinite(o.durationMin) ? ` / ${o.durationMin} min` : ''}` : '',
@@ -2750,7 +2918,10 @@
     function menu(open, back = false) {
       document.body.classList.toggle('menu-open', open);
       $('#burger').setAttribute('aria-expanded', String(open));
-      if (open) requestAnimationFrame(() => $('#nav .nav-link')?.focus());
+      if (open) requestAnimationFrame(() => {
+        const close = $('#nav [data-a="menu-close"]');
+        (close?.getClientRects().length ? close : $('#nav .nav-link'))?.focus();
+      });
       if (!open && back) $('#burger').focus();
     }
 
@@ -2760,6 +2931,7 @@
       if (!el || el.disabled) return;
       const { a, v } = el.dataset;
       switch (a) {
+        case 'menu-close': menu(false, true); break;
         case 'data-lock': clearDataSession(L('Odhlášeno. Údaje byly odstraněny z obrazovky.', 'Signed out. Data has been cleared from this view.')); break;
         case 'data-refresh': loadReservations(dataSession.page); break;
         case 'data-prev': loadReservations(Math.max(1, dataSession.page - 1)); break;
@@ -2803,12 +2975,37 @@
           invalidateQuote(); location.hash = '/'; break;
         }
         case 'fleet-filter': fleetFilter = v; renderFleet(); anim(app); break;
+        case 'select-tour': {
+          const selector = $('#tour-id');
+          if (selector && TOURS.some(tour => tour.id === v)) {
+            selector.value = v;
+            $('#tour-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            selector.focus({ preventScroll: true });
+          }
+          break;
+        }
         case 'gallery': gallery(v); break;
         case 'g-next': gIdx = (gIdx + 1) % 12; renderGallery(); break;
         case 'g-prev': gIdx = (gIdx + 11) % 12; renderGallery(); break;
         case 'g-select': gIdx = Math.max(0, Math.min(11, Number(v) || 0)); renderGallery(); break;
         case 'pick-car': if (FLEET[v]) { S.car = v; fitVehicle(); if (modal.open) modal.close(); if (path === '/') { syncHome(); $('.booking')?.scrollIntoView({ block: 'start' }); } else location.hash = '/'; toast(`${FLEET[S.car].label} · ${money(FLEET[S.car].base)} ${L('letiště – Praha', 'airport – Prague')}`); } break;
         case 'trip-filter': tripFilter = v; renderTrips(); anim(app); break;
+        case 'add-tour-stop':
+          if (path === '/tury' && S.tourStops.length < 5) {
+            S.tourStops.push({ label: '', geo: null });
+            $('.tour-stops').innerHTML = tourStopsMarkup();
+            invalidateQuote();
+            $(`#tour-stop-${S.tourStops.length - 1}`)?.focus();
+          }
+          break;
+        case 'remove-tour-stop':
+          if (path === '/tury' && Number.isInteger(Number(v))) {
+            closeAC();
+            S.tourStops.splice(Number(v), 1);
+            $('.tour-stops').innerHTML = tourStopsMarkup();
+            invalidateQuote();
+          }
+          break;
         case 'again': again(v); break;
         case 'live-refresh': { const o = orders.find(x => x.id === v); if (o) { stopLive(); startLive(o); } break; }
         case 'check-flight': {
@@ -2859,8 +3056,8 @@
         case 'wipe-yes': orders = []; reviews = []; save(); modal.close(); renderTrips(); anim(app); break;
         case 'export': {
           const cell = x => `"${String(x).replace(/^\s*[=+@-]/, "'$&").replaceAll('"', '""')}"`;
-          const rows = [[L('Číslo', 'ID'), L('Datum', 'Date'), L('Čas', 'Time'), L('Odkud', 'From'), L('Kam', 'To'), L('Vůz', 'Vehicle'), 'CZK', L('Stav', 'Status')],
-            ...orders.map(o => { const p = orderPlaces(o); return [o.id, o.date, o.time, placeText(p.pickup), p.destination ? placeText(p.destination) : L('Hodinová dispozice', 'Hourly hire'), FLEET[o.car].label, o.total, o.cancelled ? L('Zrušeno', 'Cancelled') : t('stages')[o.stage]]; })];
+          const rows = [[L('Číslo', 'ID'), L('Datum', 'Date'), L('Čas', 'Time'), L('Odkud', 'From'), L('Kam', 'To'), L('Místa výletu', 'Tour stops'), L('Vůz', 'Vehicle'), 'CZK', L('Stav', 'Status')],
+            ...orders.map(o => { const p = orderPlaces(o); return [o.id, o.date, o.time, placeText(p.pickup), p.destination ? placeText(p.destination) : L('Hodinová dispozice', 'Hourly hire'), p.stopovers.map((point, i) => `${i + 1}. ${placeText(point)}`).join(' | '), FLEET[o.car].label, o.total, o.cancelled ? L('Zrušeno', 'Cancelled') : t('stages')[o.stage]]; })];
           download('wayro-rides.csv', rows.map(r => r.map(cell).join(';')).join('\r\n'), 'text/csv;charset=utf-8');
           break;
         }
@@ -2892,7 +3089,16 @@
     document.addEventListener('input', e => {
       const el = e.target;
       if (el.dataset.ac) {
-        if (el.dataset.ac === 'stopover') readModal(); else readHome();
+        const { key, state, long } = addressContext(el.dataset.ac);
+        const tourStop = /^tour-stop-(\d+)$/.exec(el.dataset.ac);
+        if (tourStop) {
+          const stop = S.tourStops[Number(tourStop[1])];
+          if (stop) { stop.label = el.value.trim(); stop.geo = null; }
+        } else if (long) {
+          state[key] = el.value.trim();
+          if (state[key + 'Geo']?.label !== state[key]) state[key + 'Geo'] = null;
+          $$('#long-from, #long-to').forEach(input => input.setCustomValidity(''));
+        } else if (key === 'stopover') readModal(); else readHome();
         clearTimeout(acTimer); acController?.abort(); acSeq++;
         const suggestions = $(`#ac-${el.dataset.ac}`);
         if (suggestions) {
@@ -2900,7 +3106,7 @@
           suggestions.innerHTML = `<p class="ac-msg">${L('Hledám adresu…', 'Searching…')}</p>`;
           el.removeAttribute('aria-activedescendant');
         }
-        invalidateQuote();
+        if (!long) invalidateQuote();
         if (el.value.trim().length < 3) closeAC();
         else acTimer = setTimeout(() => runAC(el), 350);
         return;
@@ -2924,13 +3130,37 @@
     });
     document.addEventListener('submit', e => {
       const f = e.target;
-      if (!['book-form', 'co-form', 'rev-form', 'biz-form', 'biz-send', 'chat-form', 'driver-form', 'dispatch-form', 'data-login-form', 'data-filter-form'].includes(f.id)) return;
+      if (!['book-form', 'long-route-form', 'tour-form', 'co-form', 'rev-form', 'biz-form', 'biz-send', 'chat-form', 'driver-form', 'dispatch-form', 'data-login-form', 'data-filter-form'].includes(f.id)) return;
       e.preventDefault();
       if (f.id === 'data-login-form') { unlockData(f); return; }
       if (f.id === 'data-filter-form') { filterReservations(f); return; }
       if (f.id === 'driver-form') { startDriver(); return; }
       if (f.id === 'dispatch-form') { issueDriverLink(f); return; }
       if (f.id === 'book-form') { startBooking(); return; }
+      if (f.id === 'long-route-form') {
+        const fields = [['from', $('#long-from')], ['to', $('#long-to')]];
+        for (const [key, input] of fields) {
+          longRouteDraft[key] = input.value.trim();
+          const resolved = selectedPoint(longRouteDraft, key) || place(longRouteDraft[key]);
+          input.setCustomValidity(resolved ? '' : L('Vyberte konkrétní místo z nabídky.', 'Choose a specific place from the suggestions.'));
+          if (!resolved) { input.reportValidity(); return; }
+        }
+        const from = longRouteDraft.from.trim().toLocaleLowerCase('cs');
+        const to = longRouteDraft.to.trim().toLocaleLowerCase('cs');
+        if (from === to) {
+          const input = $('#long-to');
+          input.setCustomValidity(L('Místo odjezdu a cíl musí být různé.', 'Pickup and destination must differ.'));
+          input.reportValidity();
+          return;
+        }
+        S.from = longRouteDraft.from; S.to = longRouteDraft.to;
+        S.fromGeo = selectedPoint(longRouteDraft, 'from'); S.toGeo = selectedPoint(longRouteDraft, 'to');
+        S.mode = 'long';
+        closeAC(); renderHome(); anim(app);
+        $('.booking')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      if (f.id === 'tour-form') { startTourBooking(f); return; }
       if (f.id === 'co-form') {
         readModal();
         if (step === 1) { const err = validateDetails(); if (err) { coErr(err); return; } step = 2; renderBook(); $('[name="name"]')?.focus(); }
@@ -2979,7 +3209,7 @@
       if (e.key === 'Escape' && document.body.classList.contains('menu-open')) menu(false, true);
       if (e.key === 'Enter' && e.target.id === 'promo') { e.preventDefault(); applyPromo(); }
       if (e.key === 'Tab' && document.body.classList.contains('menu-open')) {
-        const items = $$('.logo, #nav a, .header-cta, #burger').filter(x => x.getClientRects().length);
+        const items = $$('#nav button, #nav a').filter(x => x.getClientRects().length);
         const first = items[0], last = items[items.length - 1];
         if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
         else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
@@ -3038,13 +3268,17 @@
       }
     }, true);
     document.addEventListener('focusin', e => {
-      if (e.target.matches('[data-ac]') && e.target.value.trim().length >= 3 && !selectedPoint(S, e.target.dataset.ac)) {
+      const ac = e.target.dataset.ac || '';
+      const { key, state } = addressContext(ac);
+      const tourStop = /^tour-stop-(\d+)$/.exec(ac);
+      const selected = tourStop ? S.tourStops[Number(tourStop[1])]?.geo?.label === e.target.value : selectedPoint(state, key);
+      if (e.target.matches('[data-ac]') && e.target.value.trim().length >= 3 && !selected) {
         clearTimeout(acTimer); acTimer = setTimeout(() => runAC(e.target), 250);
       }
     });
     $('#burger').addEventListener('click', () => menu(!document.body.classList.contains('menu-open')));
     $('#backdrop').addEventListener('click', () => menu(false, true));
-    $('#nav').addEventListener('click', e => { if (e.target.closest('a')) menu(false); });
+    $('#nav').addEventListener('click', e => { if (e.target.closest('a')) menu(false, true); });
     const wide = matchMedia('(min-width: 901px)');
     const onWide = () => { if (wide.matches) menu(false); };
     wide.addEventListener ? wide.addEventListener('change', onWide) : wide.addListener(onWide);

@@ -30,3 +30,5 @@ build/
 # Local order data
 data.json
 data.json.tmp
+/data/bookings.json
+/data/*.bak
